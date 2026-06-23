@@ -66,6 +66,15 @@ nav {
   transition: color .3s;
 }
 .nav-links a:hover { color: var(--txt); }
+.nav-links li { display: flex; align-items: center; gap: 4px; }
+.nav-sub {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 16px; height: 16px; border-radius: 50%;
+  color: rgba(255,255,255,.15); text-decoration: none;
+  font-size: 9px; transition: color .3s, background .3s;
+}
+.nav-sub:hover { color: var(--txt); background: rgba(255,255,255,.06); }
+.nav-sub.soon { pointer-events: none; opacity: .25; }
 @media (max-width: 768px) { .nav-links { display: none; } }
 
 /* ─── COVER ─── */
@@ -433,6 +442,46 @@ nav {
 }
 .pick:has(input:checked) .pick-dot { opacity: 1; }
 
+/* ─── EXPLORE LINK (hero overlay + after timing) ─── */
+.hero-explore {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 10px; letter-spacing: .3em;
+  color: rgba(255,255,255,.3); text-decoration: none;
+  transition: color .3s; margin-top: 16px;
+}
+.hero-explore:hover { color: var(--txt); }
+.hero-explore.soon { pointer-events: none; opacity: .3; }
+
+.explore-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 10.5px; letter-spacing: .25em;
+  color: rgba(255,255,255,.28); text-decoration: none;
+  margin-top: 16px; padding: 10px 0;
+  transition: color .3s;
+}
+.explore-link:hover { color: var(--txt); }
+.explore-link.soon { pointer-events: none; opacity: .35; }
+
+/* ─── PICK ACTION BUTTONS ─── */
+.pick-actions {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+  margin-top: 24px; max-height: 0; overflow: hidden;
+  transition: max-height .5s cubic-bezier(.16,1,.3,1), opacity .4s;
+  opacity: 0;
+}
+.pick-actions.show { max-height: 200px; opacity: 1; }
+.pick-action {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 9.5px; letter-spacing: .25em;
+  padding: 8px 20px; border-radius: 100px;
+  border: 1px solid rgba(255,255,255,.12);
+  color: rgba(255,255,255,.5); text-decoration: none;
+  font-family: 'Noto Sans TC', sans-serif;
+  transition: all .3s; min-height: 38px;
+}
+.pick-action:hover { border-color: rgba(255,255,255,.35); color: var(--txt); background: rgba(255,255,255,.04); }
+.pick-action.soon { pointer-events: none; opacity: .3; border-style: dashed; }
+
 /* ─── FADE ANIMATIONS ─── */
 .fade { opacity: 0; transform: translateY(20px); transition: opacity .9s ease, transform .9s ease; }
 .fade.go  { opacity: 1; transform: none; }
@@ -456,12 +505,12 @@ nav {
 <nav>
   <a href="#top" class="nav-logo">歲時紀行</a>
   <ul class="nav-links">
-    <li><a href="#africa">荒原</a></li>
-    <li><a href="#nl">織錦</a></li>
-    <li><a href="#iceland">永晝</a></li>
-    <li><a href="#japan">煙華</a></li>
-    <li><a href="#korea">霜林</a></li>
-    <li><a href="#december">歲末</a></li>
+    <li><a href="#africa">荒原</a><a class="nav-sub soon" title="即將推出">&#8599;</a></li>
+    <li><a href="#nl">織錦</a><a class="nav-sub soon" title="即將推出">&#8599;</a></li>
+    <li><a href="#iceland">永晝</a><a class="nav-sub soon" title="即將推出">&#8599;</a></li>
+    <li><a href="#japan">煙華</a><a class="nav-sub" href="japan.html" title="探索行程" onclick="if(window.posthog)posthog.capture('navigate_itinerary',{from:'main',to:'japan'})">&#8599;</a></li>
+    <li><a href="#korea">霜林</a><a class="nav-sub soon" title="即將推出">&#8599;</a></li>
+    <li><a href="#december">歲末</a><a class="nav-sub soon" title="即將推出">&#8599;</a></li>
   </ul>
   <a class="nav-wa" href="#reply" title="回覆"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
 </nav>
@@ -530,6 +579,7 @@ nav {
     <p class="hero-idx">01 &thinsp;/&thinsp; 非洲 · 塞倫蓋蒂 · 一月至二月</p>
     <h2 class="hero-h">日誕千靈，<br><span>塞倫蓋蒂的狂野序章</span></h2>
     <p class="hero-loc">肯亞 &middot; 坦尚尼亞 &middot; 塞倫蓋蒂</p>
+    <a class="hero-explore soon">探索行程 &rarr;</a>
   </div>
 </section>
 
@@ -591,6 +641,8 @@ nav {
     <span class="timing-note">生命誕生盛期 &middot; 捕獵頻次最高 &middot; 乾季前緣</span>
   </div>
 
+  <a class="explore-link soon fade" data-d="2">探索行程 &rarr;</a>
+
 </div>
 
 
@@ -610,6 +662,7 @@ nav {
     <p class="hero-idx">02 &thinsp;/&thinsp; 荷蘭 · 庫肯霍夫 · 三月至四月</p>
     <h2 class="hero-h">織錦漫天，<br><span>七百萬株鬱金香的盛筵</span></h2>
     <p class="hero-loc">Lisse · Amsterdam · Kinderdijk</p>
+    <a class="hero-explore soon">探索行程 &rarr;</a>
   </div>
 </section>
 
@@ -668,6 +721,8 @@ nav {
     <span class="timing-note">鬱金香極盛期 &middot; 庫肯霍夫限定開放</span>
   </div>
 
+  <a class="explore-link soon fade" data-d="2">探索行程 &rarr;</a>
+
 </div>
 
 
@@ -687,6 +742,7 @@ nav {
     <p class="hero-idx">03 &thinsp;/&thinsp; 冰島 · 六月 · 永晝</p>
     <h2 class="hero-h">子夜不落，<br><span>永晝之境的鎏金懸日</span></h2>
     <p class="hero-loc">Reykjavik · 黃金圈 · 南部海岸</p>
+    <a class="hero-explore soon">探索行程 &rarr;</a>
   </div>
 </section>
 
@@ -745,6 +801,8 @@ nav {
     <span class="timing-note">永晝之巔 &middot; 全年氣候最溫和 &middot; 靜謐之夏</span>
   </div>
 
+  <a class="explore-link soon fade" data-d="2">探索行程 &rarr;</a>
+
 </div>
 
 
@@ -765,6 +823,7 @@ nav {
     <h2 class="hero-h">萬點煙華，<br><span>落入凡塵的剎那永恆</span></h2>
     <p class="hero-loc" style="margin-bottom:6px;">東京 · 隅田川 · 長岡</p>
     <p class="hero-loc" style="letter-spacing:.15em;color:rgba(255,255,255,.25);">以聲之色，塑花之型</p>
+    <a class="hero-explore" href="japan.html" onclick="if(window.posthog)posthog.capture('navigate_itinerary',{from:'main_hero',to:'japan'})">探索行程 &rarr;</a>
   </div>
 </section>
 
@@ -826,6 +885,8 @@ nav {
     <span class="timing-note">仲夏花火祭 &middot; 浪漫浴衣季 &middot; 傳統夏日祭典</span>
   </div>
 
+  <a class="explore-link fade" data-d="2" href="japan.html" onclick="if(window.posthog)posthog.capture('navigate_itinerary',{from:'main_section',to:'japan'})">探索行程 &rarr;</a>
+
 </div>
 
 
@@ -845,6 +906,7 @@ nav {
     <p class="hero-idx">05 &thinsp;/&thinsp; 韓國 · 十月</p>
     <h2 class="hero-h">赤楓流金，<br><span>交疊於晚秋的同一抹山色</span></h2>
     <p class="hero-loc">首爾 · 雪嶽山 · 內藏山</p>
+    <a class="hero-explore soon">探索行程 &rarr;</a>
   </div>
 </section>
 
@@ -902,6 +964,8 @@ nav {
     <span class="timing-val" style="color:var(--kr)">十月</span>
     <span class="timing-note">楓紅最高峰 &middot; 全年最舒適氣候 &middot; 金秋首爾</span>
   </div>
+
+  <a class="explore-link soon fade" data-d="2">探索行程 &rarr;</a>
 
 </div>
 
@@ -971,6 +1035,16 @@ nav {
       <label class="pick"><input type="checkbox"><span class="pick-dot" style="background:var(--kr)"></span>霜林染赤 · 金秋楓面</label>
       <label class="pick"><input type="checkbox"><span class="pick-dot" style="background:var(--jpw)"></span>歲末 · 銀冬霓彩日本</label>
       <label class="pick"><input type="checkbox"><span class="pick-dot" style="background:var(--eu)"></span>歲末 · 古城頌歌歐洲</label>
+    </div>
+    <div class="pick-actions" id="pickActions">
+      <span style="font-size:9.5px;letter-spacing:.35em;color:rgba(255,255,255,.25);width:100%;margin-bottom:4px;">前往行程</span>
+      <a class="pick-action soon" data-pick="0">荒原之啟</a>
+      <a class="pick-action soon" data-pick="1">郁金盛筵</a>
+      <a class="pick-action soon" data-pick="2">子夜孤陽</a>
+      <a class="pick-action" data-pick="3" href="japan.html" onclick="if(window.posthog)posthog.capture('navigate_itinerary',{from:'main_picks',to:'japan'})">浮生煙華 &rarr;</a>
+      <a class="pick-action soon" data-pick="4">霜林染赤</a>
+      <a class="pick-action soon" data-pick="5">歲末 · 日本</a>
+      <a class="pick-action soon" data-pick="6">歲末 · 歐洲</a>
     </div>
   </div>
 </section>
@@ -1047,6 +1121,20 @@ function sendInline() {
   document.getElementById('msgBox').value = '';
   document.getElementById('msgBox').placeholder = '已送出 ♡';
 }
+
+// Pick actions visibility
+const pickCheckboxes = document.querySelectorAll('.pick input[type="checkbox"]');
+const pickActionsEl = document.getElementById('pickActions');
+const pickActionBtns = pickActionsEl.querySelectorAll('.pick-action');
+function updatePickActions() {
+  const checked = [...pickCheckboxes].map((cb, i) => cb.checked);
+  const anyChecked = checked.some(Boolean);
+  pickActionsEl.classList.toggle('show', anyChecked);
+  pickActionBtns.forEach((btn, i) => {
+    btn.style.display = checked[i] ? '' : 'none';
+  });
+}
+pickCheckboxes.forEach(cb => cb.addEventListener('change', updatePickActions));
 </script>
 <script>
   !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
