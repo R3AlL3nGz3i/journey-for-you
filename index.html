@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>歲時紀行 · 四時遠方</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Noto+Serif+TC:wght@300;400;700;900&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+:root {
+  --bg: #080808;
+  --txt: #F0EDE8;
+  --dim: rgba(240,237,232,0.48);
+  --pad: clamp(24px, 7vw, 88px);
+  --gap: clamp(16px, 4vw, 24px);
+  --af:  #C8870A;
+  --nl:  #4A9B2A;
+  --ic:  #1D9E75;
+  --jp:  #E07820;
+  --kr:  #7B6FD4;
+  --jpw: #E85B7A;
+  --eu:  #5B9EE8;
+}
+
+body {
+  background: var(--bg);
+  color: var(--txt);
+  font-family: 'Noto Sans TC', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed;
+  top: 0; inset-inline: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px var(--pad);
+  background: rgba(8,8,8,.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,.03);
+}
+.nav-logo {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-decoration: none;
+  color: var(--txt);
+}
+.nav-links { display: flex; gap: 24px; list-style: none; }
+.nav-links a {
+  font-size: 10px;
+  letter-spacing: .4em;
+  text-transform: uppercase;
+  color: var(--dim);
+  text-decoration: none;
+  transition: color .3s;
+}
+.nav-links a:hover { color: var(--txt); }
+@media (max-width: 768px) { .nav-links { display: none; } }
+
+/* ─── COVER ─── */
+.cover {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 140px var(--pad) 80px;
+  position: relative;
+}
+
+.cover-msg {
+  font-family: 'Noto Serif TC', serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+  font-weight: 300;
+  line-height: 1.6;
+  max-width: 640px;
+  letter-spacing: 0.08em;
+  margin-bottom: clamp(60px, 10vw, 100px);
+  color: rgba(240,237,232,0.9);
+}
+
+.year-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px;
+  max-width: 800px;
+}
+@media (min-width: 480px) { .year-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 780px) { .year-grid { grid-template-columns: repeat(6, 1fr); } }
+
+.yg-item {
+  padding: 18px 14px 14px;
+  border: 1px solid rgba(255,255,255,.04);
+  background: rgba(255,255,255,.01);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: background 0.3s;
+}
+.yg-item:hover { background: rgba(255,255,255,.03); }
+.yg-num  { font-size: 9px; letter-spacing: .3em; color: rgba(240,237,232,.2); margin-bottom: 2px; }
+.yg-dest { font-size: 13px; font-weight: 400; letter-spacing: 0.1em; line-height: 1.3; }
+.yg-sub  { font-size: 9.5px; color: rgba(240,237,232,.3); line-height: 1.5; margin-top: 2px; }
+
+.scroll-cue {
+  position: absolute;
+  bottom: 40px; left: var(--pad);
+  display: flex; align-items: center; gap: 14px;
+}
+.sc-bar { width: 44px; height: 1px; background: rgba(255,255,255,.08); position: relative; overflow: hidden; }
+.sc-bar::after {
+  content: '';
+  position: absolute; height: 100%; width: 40%; left: -40%;
+  background: rgba(255,255,255,.45);
+  animation: run 2.5s ease-in-out infinite;
+}
+@keyframes run { to { left: 140%; } }
+.sc-txt { font-size: 9px; letter-spacing: .5em; color: rgba(255,255,255,.2); text-transform: uppercase; }
+
+/* ─── SECTION TAB ─── */
+.tab { padding: 80px var(--pad) 0; }
+.tab-inner {
+  border-top: 1px solid rgba(255,255,255,.05);
+  padding-top: 20px;
+  display: flex; align-items: center; gap: 20px;
+}
+.tab-n    { font-size: 10px; letter-spacing: .2em; color: rgba(240,237,232,.3); }
+.tab-rule { flex: 1; height: 1px; background: rgba(255,255,255,.03); }
+.tab-word { font-size: 10px; letter-spacing: .4em; text-transform: uppercase; color: var(--dim); }
+
+/* ─── HERO ─── */
+.hero {
+  height: 100svh;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.08);
+  transition: transform 2.2s cubic-bezier(.16,1,.3,1);
+}
+.hero.seen .hero-bg { transform: scale(1); }
+.hero-veil {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(to top,  rgba(8,8,8,1) 0%, rgba(8,8,8,.7) 30%, rgba(8,8,8,.15) 65%, transparent 100%),
+    linear-gradient(to right, rgba(8,8,8,.3) 0%, transparent 60%);
+}
+.hero-txt {
+  position: relative; z-index: 1;
+  padding: 0 var(--pad) clamp(64px, 10vw, 100px);
+  max-width: 920px;
+  border-left: 2px solid rgba(255,255,255,0.05); /* 增加側邊結構線，穩定排版對齊感 */
+  margin-left: -2px;
+  padding-left: calc(var(--pad) + 12px);
+}
+.hero-idx {
+  font-size: 10px;
+  letter-spacing: .4em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+  margin-bottom: 20px;
+}
+.hero-h {
+  font-family: 'Noto Serif TC', serif;
+  font-weight: 400;
+  font-size: clamp(2rem, 6.5vw, 4.4rem);
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+  margin-bottom: 20px;
+}
+.hero-h span {
+  font-weight: 700;
+}
+.hero-loc {
+  font-size: 10.5px;
+  letter-spacing: .4em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.35);
+}
+
+/* ─── BLOCK ─── */
+.block {
+  padding: clamp(60px, 10vw, 100px) var(--pad);
+  background: #090909;
+}
+
+/* ─── STAT ─── */
+.stat {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  margin-bottom: 60px;
+  padding-bottom: 52px;
+  border-bottom: 1px solid rgba(255,255,255,.04);
+}
+@media (max-width: 768px) { .stat { flex-direction: column; gap: 16px; } }
+.stat-n {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 10vw, 7.5rem);
+  line-height: 0.9;
+  flex-shrink: 0;
+}
+.stat-copy { padding-top: 8px; }
+.stat-lead {
+  font-family: 'Noto Serif TC', serif;
+  font-size: clamp(.92rem, 1.8vw, 1.15rem);
+  font-weight: 300;
+  color: rgba(240,237,232,.65);
+  line-height: 1.9;
+  letter-spacing: 0.06em;
+  margin-bottom: 24px;
+}
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  font-size: 9.5px; letter-spacing: .2em; 
+  padding: 5px 14px; border-radius: 100px;
+  border: 1px solid rgba(255,255,255,.08);
+  color: rgba(255,255,255,.35);
+}
+
+/* ─── CARDS ─── */
+.cards { display: grid; gap: 4px; margin-bottom: 40px; }
+@media (min-width: 620px) { .cards { grid-template-columns: repeat(3, 1fr); } }
+
+.card {
+  position: relative; overflow: hidden;
+  aspect-ratio: 4/5;
+  background: #141414;
+}
+.card-bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  transition: transform .9s cubic-bezier(.16,1,.3,1);
+}
+.card:hover .card-bg { transform: scale(1.06); }
+.card-veil {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.96) 0%, rgba(0,0,0,.3) 50%, transparent 100%);
+}
+.card-body { position: absolute; bottom: 0; inset-inline: 0; padding: clamp(20px,4vw,28px); }
+.card-where { font-size: 9px; letter-spacing: .3em; text-transform: uppercase; opacity: .35; margin-bottom: 8px; }
+.card-title {
+  font-family: 'Noto Serif TC', serif;
+  font-size: clamp(.95rem, 1.8vw, 1.15rem);
+  font-weight: 700; letter-spacing: 0.05em; line-height: 1.4; margin-bottom: 12px;
+}
+.card-desc {
+  font-size: clamp(.76rem, 1.4vw, .84rem);
+  line-height: 1.9; color: rgba(255,255,255,.52);
+  text-align: justify;
+}
+
+/* ─── VIDEO ─── */
+.vid-section { margin-bottom: 40px; }
+.vid-label { font-size: 10px; letter-spacing: .4em; text-transform: uppercase; color: var(--dim); margin-bottom: 16px; }
+.vid-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #111; border: 1px solid rgba(255,255,255,0.02); }
+.vid-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+.vid-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 10px; letter-spacing: .4em; text-transform: uppercase;
+  text-decoration: none; color: var(--dim);
+  border-bottom: 1px solid rgba(255,255,255,.1); padding-bottom: 4px;
+  transition: color .3s, border-color .3s;
+  margin-bottom: 40px;
+}
+.vid-link:hover { color: var(--txt); border-color: rgba(255,255,255,.4); }
+
+/* ─── TIMING ─── */
+.timing {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 16px;
+  padding: 20px 24px;
+  border: 1px solid rgba(255,255,255,.05);
+  background: rgba(255,255,255,0.01);
+}
+.timing-lbl { font-size: 9.5px; letter-spacing: .4em; text-transform: uppercase; color: var(--dim); }
+.timing-val { font-family: 'Noto Serif TC', serif; font-size: 1.1rem; font-weight: 700; letter-spacing: 0.05em; }
+.timing-note { font-size: 11px; color: rgba(255,255,255,.3); letter-spacing: 0.05em; }
+
+/* ─── DECEMBER DUAL ─── */
+.dec-split { display: flex; height: 100svh; }
+@media (max-width: 768px) { .dec-split { flex-direction: column; height: auto; } }
+
+.dec-panel {
+  flex: 1; position: relative;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 0 6% clamp(64px,10vw,100px);
+  overflow: hidden; cursor: pointer;
+  transition: flex .6s cubic-bezier(.16,1,.3,1);
+}
+.dec-panel:hover { flex: 1.15; }
+.dec-panel.chosen { flex: 1.25; }
+@media (max-width: 768px) { .dec-panel { min-height: 55svh; } }
+
+.dec-bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  transition: transform .9s cubic-bezier(.16,1,.3,1);
+}
+.dec-panel:hover .dec-bg { transform: scale(1.05); }
+
+.dec-veil {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(8,8,8,.98) 0%, rgba(8,8,8,.55) 35%, rgba(8,8,8,.15) 70%, transparent 100%);
+}
+.dec-divider {
+  position: absolute; top: 0; bottom: 0; right: 0;
+  width: 1px; background: rgba(255,255,255,.05);
+}
+
+.dec-txt { position: relative; z-index: 1; }
+.dec-opt { font-size: 10px; letter-spacing: .4em; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 12px; }
+.dec-h {
+  font-family: 'Noto Serif TC', serif; font-weight: 400;
+  font-size: clamp(1.8rem, 4.5vw, 3rem); line-height: 1.3; letter-spacing: 0.05em; margin-bottom: 12px;
+}
+.dec-h span { font-weight: 700; }
+.dec-sub { font-size: 10px; letter-spacing: .35em; text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: 22px; }
+.dec-desc {
+  font-size: clamp(.78rem, 1.4vw, .86rem); line-height: 1.9;
+  color: rgba(255,255,255,.52); max-width: 400px; text-align: justify;
+}
+.dec-btn {
+  display: inline-block; margin-top: 28px;
+  font-size: 10px; letter-spacing: .35em; text-transform: uppercase;
+  padding: 12px 26px;
+  border: 1px solid rgba(255,255,255,.15);
+  color: rgba(255,255,255,.5);
+  background: transparent; cursor: pointer;
+  font-family: 'Noto Sans TC', sans-serif;
+  transition: all .3s cubic-bezier(.16,1,.3,1); min-height: 44px;
+}
+.dec-btn:hover { border-color: rgba(255,255,255,.5); color: var(--txt); background: rgba(255,255,255,.02); }
+.dec-panel.chosen .dec-btn { border-color: #fff; color: #fff; background: rgba(255,255,255,.08); }
+
+/* ─── CLOSING ─── */
+.closing {
+  min-height: 60svh; display: flex; align-items: center; justify-content: center;
+  text-align: center; padding: 100px var(--pad);
+  background: var(--bg);
+}
+.closing-h {
+  font-family: 'Noto Serif TC', serif;
+  font-size: clamp(1.4rem, 3.5vw, 2.4rem); font-weight: 300;
+  line-height: 1.5; letter-spacing: 0.06em; margin-bottom: 20px;
+}
+.closing-p { font-size: 14px; color: var(--dim); letter-spacing: 0.08em; line-height: 2.2; }
+
+/* ─── CLOSING PICKS ─── */
+.closing-picks {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 12px; margin-top: 44px;
+}
+.closing-picks-label {
+  font-size: 10.5px; letter-spacing: .4em; text-transform: uppercase;
+  color: rgba(255,255,255,.3); margin-bottom: 10px;
+}
+.pick {
+  display: inline-flex; align-items: center; gap: 12px;
+  padding: 10px 24px; border-radius: 100px;
+  border: 1px solid rgba(255,255,255,.06);
+  font-size: 13px; color: rgba(255,255,255,.45);
+  cursor: pointer; transition: all .3s; user-select: none;
+}
+.pick input { position: absolute; opacity: 0; pointer-events: none; }
+.pick-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  opacity: .35; transition: opacity .3s;
+}
+.pick:has(input:checked) {
+  border-color: rgba(255,255,255,.2);
+  color: var(--txt);
+  background: rgba(255,255,255,.03);
+}
+.pick:has(input:checked) .pick-dot { opacity: 1; }
+
+/* ─── FADE ANIMATIONS ─── */
+.fade { opacity: 0; transform: translateY(20px); transition: opacity .9s ease, transform .9s ease; }
+.fade.go  { opacity: 1; transform: none; }
+.fade[data-d="1"] { transition-delay: .15s; }
+.fade[data-d="2"] { transition-delay: .3s; }
+
+/* ─── SAFE AREA ─── */
+@supports (padding: max(0px)) {
+  nav      { padding-left: max(var(--pad), env(safe-area-inset-left)); padding-right: max(var(--pad), env(safe-area-inset-right)); }
+  .cover   { padding-left: max(var(--pad), env(safe-area-inset-left)); padding-right: max(var(--pad), env(safe-area-inset-right)); }
+  .tab     { padding-left: max(var(--pad), env(safe-area-inset-left)); padding-right: max(var(--pad), env(safe-area-inset-right)); }
+  .hero-txt{ padding-left: max(var(--pad), env(safe-area-inset-left)); }
+  .block   { padding-left: max(var(--pad), env(safe-area-inset-left)); padding-right: max(var(--pad), env(safe-area-inset-right)); }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="#top" class="nav-logo">歲時紀行</a>
+  <ul class="nav-links">
+    <li><a href="#africa">荒原</a></li>
+    <li><a href="#nl">織錦</a></li>
+    <li><a href="#iceland">永晝</a></li>
+    <li><a href="#japan">煙華</a></li>
+    <li><a href="#korea">霜林</a></li>
+    <li><a href="#december">歲末</a></li>
+  </ul>
+</nav>
+
+
+<!-- ══════════ COVER ══════════ -->
+<section class="cover" id="top">
+
+  <p class="cover-msg fade">未及啟程，<br>且隨我輕讀一紙遠方。</p>
+
+  <div class="year-grid fade" data-d="1">
+    <div class="yg-item">
+      <span class="yg-num">01</span>
+      <span class="yg-dest" style="color:var(--af)">荒原之啟</span>
+      <span class="yg-sub">一月 · 二月</span>
+    </div>
+    <div class="yg-item">
+      <span class="yg-num">02</span>
+      <span class="yg-dest" style="color:var(--nl)">郁金盛筵</span>
+      <span class="yg-sub">三月 · 四月</span>
+    </div>
+    <div class="yg-item">
+      <span class="yg-num">03</span>
+      <span class="yg-dest" style="color:var(--ic)">子夜孤陽</span>
+      <span class="yg-sub">六月</span>
+    </div>
+    <div class="yg-item">
+      <span class="yg-num">04</span>
+      <span class="yg-dest" style="color:var(--jp)">浮生煙華</span>
+      <span class="yg-sub">七月</span>
+    </div>
+    <div class="yg-item">
+      <span class="yg-num">05</span>
+      <span class="yg-dest" style="color:var(--kr)">霜林染赤</span>
+      <span class="yg-sub">十月</span>
+    </div>
+    <div class="yg-item">
+      <span class="yg-num">06</span>
+      <span class="yg-dest">歲末交響</span>
+      <span class="yg-sub" style="color:var(--jpw)">冬夜燈火</span>
+      <span class="yg-sub" style="color:rgba(240,237,232,.15)">or</span>
+      <span class="yg-sub" style="color:var(--eu)">聖誕集市</span>
+    </div>
+  </div>
+
+  <div class="scroll-cue" aria-hidden="true">
+    <span class="sc-bar"></span>
+    <span class="sc-txt">依序俯瞰</span>
+  </div>
+</section>
+
+
+<!-- ══════════ 01 · AFRICA ══════════ -->
+<div class="tab">
+  <div class="tab-inner">
+    <span class="tab-n">01</span>
+    <span class="tab-rule"></span>
+    <span class="tab-word">Africa · Jan / Feb · 荒原之啟</span>
+  </div>
+</div>
+
+<section class="hero" id="africa">
+  <div class="hero-bg" style="background-color:#1A0900;background-image:url('https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=1920&q=80');"></div>
+  <div class="hero-veil"></div>
+  <div class="hero-txt">
+    <p class="hero-idx">01 &thinsp;/&thinsp; 非洲 · 塞倫蓋蒂 · 一月至二月</p>
+    <h2 class="hero-h">日誕千靈，<br><span>塞倫蓋蒂的狂野序章</span></h2>
+    <p class="hero-loc">肯亞 &middot; 坦尚尼亞 &middot; 塞倫蓋蒂</p>
+  </div>
+</section>
+
+<div class="block">
+
+  <div class="stat fade">
+    <div class="stat-n" style="color:var(--af)">8K</div>
+    <div class="stat-copy">
+      <p class="stat-lead">每日，數千新生命降生於廣袤無垠的曠野。<br>與此同時，掠食者敏銳的目光正隱於草莽之間。</p>
+      <div class="chips">
+        <span class="chip">一月產犢盛期</span>
+        <span class="chip">Safari 獵遊</span>
+        <span class="chip">曠野熱氣球</span>
+        <span class="chip">無光害星海</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cards fade" data-d="1">
+    <div class="card">
+      <div class="card-bg" style="background-color:#2A1000;background-image:url('https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=900&q=80');"></div>
+      <div class="card-veil"></div>
+      <div class="card-body">
+        <p class="card-where">坦尚尼亞 · 塞倫蓋蒂</p>
+        <p class="card-title">初生季</p>
+        <p class="card-desc">一月的草原上，數千生靈在晨霧中墜地，四肢尚顫便要學會奔跑。掠食者深諳此道——這是全年生命演繹最為激烈、最為頻密的時節。</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-bg" style="background-color:#1C0B00;background-image:url('https://images.unsplash.com/photo-1503066211613-c17ebc9daef0?auto=format&fit=crop&w=900&q=80');"></div>
+      <div class="card-veil"></div>
+      <div class="card-body">
+        <p class="card-where">塞倫蓋蒂 · 破曉</p>
+        <p class="card-title">雲端俯瞰</p>
+        <p class="card-desc">夜色未央時隨風啟程，當第一縷曦光劃破天際，無垠的東非大草原在腳下如古老畫卷般鋪展。這裡沒有城市的喧囂，只有天地初開般的原始與浩瀚。</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-bg" style="background-color:#020315;background-image:url('https://images.unsplash.com/photo-1444927714506-8492d94b4e3d?auto=format&fit=crop&w=900&q=80');background-position:center 30%;"></div>
+      <div class="card-veil"></div>
+      <div class="card-body">
+        <p class="card-where">東非草原 · 夜闌</p>
+        <p class="card-title">寂滅之光</p>
+        <p class="card-desc">當大地完全隱入純粹的黑暗，塵世的所有雜音隨之熄滅。仰望蒼穹，璀璨星河如瀑布般傾瀉而下，唯有遠處曠野傳來的隱隱獸鳴，襯托著夜的深邃。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="vid-section fade" data-d="2">
+    <p class="vid-label">感受大遷徙的磅礴史詩 ↓</p>
+    <div class="vid-wrap">
+      <iframe src="https://www.youtube.com/embed/v17DZsAgTcI?rel=0&color=white" title="Great Migration 2025" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <div class="timing fade" data-d="2">
+    <span class="timing-lbl">最佳時節</span>
+    <span class="timing-val" style="color:var(--af)">一月 — 二月</span>
+    <span class="timing-note">生命誕生盛期 &middot; 捕獵頻次最高 &middot; 乾季前緣</span>
+  </div>
+
+</div>
+
+
+<!-- ══════════ 02 · NETHERLANDS ══════════ -->
+<div class="tab">
+  <div class="tab-inner">
+    <span class="tab-n">02</span>
+    <span class="tab-rule"></span>
+    <span class="tab-word">Netherlands · Mar / Apr · 鬱金盛筵</span>
+  </div>
+</div>
+
+<section class="hero" id="nl">
+  <div class="hero-bg" style="background-color:#1A2A00;background-image:url('https://images.unsplash.com/photo-1468327768560-75b778cbb551?auto=format&fit=crop&w=1920&q=80');"></div>
+  <div class="hero-veil"></div>
+  <div class="hero-txt">
+    <p class="hero-idx">02 &thinsp;/&thinsp; 荷蘭 · 庫肯霍夫 · 三月至四月</p>
+    <h2 class="hero-h">織錦漫天，<br><span>七百萬株鬱金香的盛筵</span></h2>
+    <p class="hero-loc">Lisse · Amsterdam · Kinderdijk</p>
+  </div>
+</section>
+
+<div class="block">
+
+  <div class="stat fade">
+    <div class="stat-n" style="color:var(--nl)">32ha</div>
+    <div class="stat-copy">
+      <p class="stat-lead">七百萬株鮮花在大地上肆意鋪陳、競相綻放。<br>這是大地以最極致、最盛大的姿態，迎接春天的歸來。</p>
+      <div class="chips">
+        <span class="chip">三月下旬佳期</span>
+        <span class="chip">庫肯霍夫花展</span>
+        <span class="chip">阿姆斯特丹運河</span>
+        <span class="chip">古老風車</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cards fade" data-d="1">
+    <div class="card">
+      <div class="card-bg" style="background-color:#0A1A00;background-image:url('https://images.unsplash.com/photo-1462275646964-a0e3386b89fa?auto=format&fit=crop&w=900&q=80');"></div>
+      <div class="card-veil"></div>
+      <div class="card-body">
+        <p class="card-where">Lisse · 庫肯霍夫</p>
+        <p class="card-title">大地油彩</p>
+        <p class="card-desc">這裡的色彩並非漸層，而是一畦一畦橫亙鋪展的——赤、金、紫，界線分明如大師揮就的油畫。步入其間便被四面花浪圍攏，冷冽的空氣裡浮動著若有似無的清香。</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-bg" style="background-color:#080E1A;background-image:url('https://images.unsplash.com/photo-1534351590666-13e3e96b5017?auto=format&fit=crop&w=900&q=80');"></div>
+      <div class="card-veil"></div>
+      <div class="card-body">
+        <p class="card-where">Amsterdam · 阿姆斯特丹</p>
+        <p class="card-title">水色春光</p>
+        <p class="card-desc">春日的水位漸漸豐盈，兩岸新萌的嫩葉在逆光中近乎透明。單車的清脆鈴聲從四面八方飄來，比腳步聲更密，比春風更輕。</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-bg" style="background-color:#0A1200;background-image:url('https://images.unsplash.com/photo-1569025690938-a00729c9e1f9?auto=format&fit=crop&w=900&q=80');"></div>
+      <div class="card-veil"></div>
+      <div class="card-body">
+        <p class="card-where">Kinderdijk · 小孩堤防</p>
+        <p class="card-title">時光的輪迴</p>
+        <p class="card-desc">巨大的葉片緩緩轉動，古老的機械聲從木質結構深處傳出。運河邊的露天座位上，春風雖仍帶著一絲涼意，但當陽光直直落在臉上時，靈魂是暖的。</p>
+      </div>
+    </div>
+  </div>
+
+  <a class="vid-link fade" data-d="2" href="https://www.youtube.com/results?search_query=Keukenhof+tulips+2024+4K+drone" target="_blank" rel="noopener">
+    凝視庫肯霍夫的花田實景 →
+  </a>
+
+  <div class="timing fade" data-d="2">
+    <span class="timing-lbl">最佳時節</span>
+    <span class="timing-val" style="color:var(--nl)">三月下旬 — 五月初</span>
+    <span class="timing-note">鬱金香極盛期 &middot; 庫肯霍夫限定開放</span>
+  </div>
+
+</div>
+
+
+<!-- ══════════ 03 · ICELAND ══════════ -->
+<div class="tab">
+  <div class="tab-inner">
+    <span class="tab-n">03</span>
+    <span class="tab-rule"></span>
+    <span class="tab-word">Iceland · Jun · 子夜孤陽</span>
+  </div>
+</div>
+
+<section class="hero" id="iceland">
+  <div class="hero-bg" style="background-color:#050D18;background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1920&q=80');"></div>
+  <div class="hero-veil"></div>
+  <div class="hero-txt">
+    <p class="hero-idx">03 &thinsp;/&thinsp; 冰島 · 六月 · 永晝</p>
+    <h2 class="hero-h">子夜不落，<br><span>永晝之境的鎏金懸日</span></h2>
+    <p class="hero-loc">Reykjavik · 黃金圈 · 南部海岸</p>
+  </div>
+</section>
+
+<div class="block">
+
+  <div class="stat fade">
+    <div class="stat-n" style="color:var(--ic)">24h</div>
+    <div class="stat-copy">
+      <p class="stat-lead">六月的日照永不間斷。<br>夜色僅化為一抹橘黃的餘暉，微醺於地平線，旋即復甦。</p>
+      <div class="chips">
+        <span class="chip">永晝 · 午夜太陽</span>
+        <span class="chip">沸騰間歇泉</span>
+        <span class="chip">苔原與熔岩</span>
+        <span class="chip">崖邊海鸚</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cards fade" data-d="1">
+    <div class="card">
+      <div class="card-bg" style="background-color:#030A15;background-image:url('https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format&fit=crop&w=900&q=80');"></div>
+      <div class="card-veil"></div>
+      <div class="card-body">
+        <p class="card-where">Geysir · 間歇泉</p>
+        <p class="card-title">大地的低吟</p>
+        <p class="card-desc">噴發前夕，地底傳來沉悶的低鳴，繼而一堵滾燙的水柱直衝三十公尺的蒼穹。冷冽的空氣裡夾帶一絲硫磺的氣息，越靠近泉源，越能感受到地心的脈搏。</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-bg" style="background-color:#020810;background-image:url('https://images.unsplash.com/photo-1504893524553-b855bce32c67?auto=format&fit=crop&w=900&q=80');"></div>
+      <div class="card-veil"></div>
+      <div class="card-body">
+        <p class="card-where">南部海岸</p>
+        <p class="card-title">模糊的界線</p>
+        <p class="card-desc">天色始終沒有真正暗下，只是化作一片溫柔的橘黃餘韻，在地平線上靜止。當時針指向凌晨十二點，光線模糊了晝與夜的宿命。</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-bg" style="background-color:#050A05;background-image:url('https://images.unsplash.com/photo-1508193638397-1c4234db14d8?auto=format&fit=crop&w=900&q=80');"></div>
+      <div class="card-veil"></div>
+      <div class="card-body">
+        <p class="card-where">黑沙灘懸崖</p>
+        <p class="card-title">孤獨的居民</p>
+        <p class="card-desc">海鸚佇立在危崖之巔靜靜凝視著來客，不曾驚飛。那眼神彷彿在說，奇怪的是人類。熔岩原野上的古老苔蘚踩下去綿軟無聲，帶著時光的彈性。</p>
+      </div>
+    </div>
+  </div>
+
+  <a class="vid-link fade" data-d="2" href="https://www.youtube.com/results?search_query=Iceland+midnight+sun+June+4K" target="_blank" rel="noopener">
+    沉浸於午夜不落的冰島 →
+  </a>
+
+  <div class="timing fade" data-d="2">
+    <span class="timing-lbl">最佳時節</span>
+    <span class="timing-val" style="color:var(--ic)">六月</span>
+    <span class="timing-note">永晝之巔 &middot; 全年氣候最溫和 &middot; 靜謐之夏</span>
+  </div>
+
+</div>
+
+
+<!-- ══════════ 04 · JAPAN FIREWORKS ══════════ -->
+<div class="tab">
+  <div class="tab-inner">
+    <span class="tab-n">04</span>
+    <span class="tab-rule"></span>
+    <span class="tab-word">Japan · Jul · 浮生煙華</span>
+  </div>
+</div>
+
+<section class="hero" id="japan">
+  <div class="hero-bg" style="background-color:#180008;background-image:url('https://images.unsplash.com/photo-1498931299472-f7a63a5a1cfa?auto=format&fit=crop&w=1920&q=80');"></div>
+  <div class="hero-veil"></div>
+  <div class="hero-txt">
+    <p class="hero-idx">04 &thinsp;/&thinsp; 日本 · 七月 · 花火大會</p>
+    <h2 class="hero-h">萬點煙華，<br><span>落入凡塵的剎那永恆</span></h2>
+    <p class="hero-loc" style="margin-bottom:6px;">東京 · 隅田川 · 長岡</p>
+    <p class="hero-loc" style="letter-spacing:.15em;color:rgba(255,255,255,.25);">以聲之色，塑花之型</p>
+  </div>
+</section>
+
+<div class="block">
+
+  <div class="stat fade">
+    <div class="stat-n" style="color:var(--jp)">20,000</div>
+    <div class="stat-copy">
+      <p class="stat-lead">兩萬發火光在九十分鐘內撕裂夜空，肆意燃盡。<br>隅田川畔，兩百萬人同時仰望，屏息迎接那場浩大的幻滅。</p>
+      <div class="chips">
+        <span class="chip">七月下旬</span>
+        <span class="chip">隅田川之夜</span>
+        <span class="chip">長岡不死鳥</span>
+        <span class="chip">浴衣與祭典</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cards fade" data-d="1">
+    <div class="card">
+      <div class="card-bg" style="background-color:#180008;background-image:url('https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?auto=format&fit=crop&w=900&q=80');"></div>
+      <div class="card-veil"></div>
+      <div class="card-body">
+        <p class="card-where">東京 · 隅田川</p>
+        <p class="card-title">三大花火之夜</p>
+        <p class="card-desc">午後三時，藍色的防水布已鋪滿河岸。第一發花火綻裂的巨響，往往先震進胸腔，而後才傳入耳畔。河堤坐無虛席，萬千仰望的身影皆被染上流光。</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-bg" style="background-color:#100020;background-image:url('https://images.unsplash.com/photo-1509023464722-18d996393ca8?auto=format&fit=crop&w=900&q=80');"></div>
+      <div class="card-veil"></div>
+      <div class="card-body">
+        <p class="card-where">山梨 · 河口湖</p>
+        <p class="card-title">雙生富士</p>
+        <p class="card-desc">沉靜的富士山倒映於如鏡湖面，花火在天際與水中同時幻化。煙霧散盡後，碎裂的光點輕落，揉碎了一湖流離的夢境。</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-bg" style="background-color:#180A00;background-image:url('https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=900&q=80');"></div>
+      <div class="card-veil"></div>
+      <div class="card-body">
+        <p class="card-where">全日本 · 盛夏</p>
+        <p class="card-title">夏祭與儀式</p>
+        <p class="card-desc">身著素雅浴衣、淺嚐溫熱的章魚燒，穿行於市井人潮。尋一處空地席地而坐，整個夏天，日本的某一處角落都在上演這場關於光的短暫儀式。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="vid-section fade" data-d="2">
+    <p class="vid-label">浴火重生的長岡鳳凰花火史詩 ↓</p>
+    <div class="vid-wrap">
+      <iframe src="https://www.youtube.com/embed/cSJM78onjkA?rel=0&color=white" title="Nagaoka Phoenix 2025 8K" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <div class="timing fade" data-d="2">
+    <span class="timing-lbl">最佳時節</span>
+    <span class="timing-val" style="color:var(--jp)">七月 — 八月</span>
+    <span class="timing-note">仲夏花火祭 &middot; 浪漫浴衣季 &middot; 傳統夏日祭典</span>
+  </div>
+
+</div>
+
+
+<!-- ══════════ 05 · SOUTH KOREA ══════════ -->
+<div class="tab">
+  <div class="tab-inner">
+    <span class="tab-n">05</span>
+    <span class="tab-rule"></span>
+    <span class="tab-word">South Korea · Oct · 霜林染赤</span>
+  </div>
+</div>
+
+<section class="hero" id="korea">
+  <div class="hero-bg" style="background-color:#080415;background-image:url('https://images.unsplash.com/photo-1548115184-bc6544d06a58?auto=format&fit=crop&w=1920&q=80');"></div>
+  <div class="hero-veil"></div>
+  <div class="hero-txt">
+    <p class="hero-idx">05 &thinsp;/&thinsp; 韓國 · 十月</p>
+    <h2 class="hero-h">赤楓流金，<br><span>交疊於晚秋的同一抹山色</span></h2>
+    <p class="hero-loc">首爾 · 雪嶽山 · 內藏山</p>
+  </div>
+</section>
+
+<div class="block">
+
+  <div class="stat fade">
+    <div class="stat-n" style="color:var(--kr)">10月</div>
+    <div class="stat-copy">
+      <p class="stat-lead">那是丹楓與寒杏最為決絕的極盛之期。<br>赤紅與純金比肩而立，毫無過渡，美得驚心動魄。</p>
+      <div class="chips">
+        <span class="chip">十月金秋</span>
+        <span class="chip">雪嶽楓林</span>
+        <span class="chip">霓虹與市井</span>
+        <span class="chip">深夜食光</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cards fade" data-d="1">
+    <div class="card">
+      <div class="card-bg" style="background-color:#0A0520;background-image:url('https://images.unsplash.com/photo-1507783548227-544c3b8fc065?auto=format&fit=crop&w=900&q=80');"></div>
+      <div class="card-veil"></div>
+      <div class="card-body">
+        <p class="card-where">江原道 · 雪嶽山</p>
+        <p class="card-title">山徑晚秋</p>
+        <p class="card-desc">十月的山路遊人如織，然而樹冠極高，篩落的光斑是碎的、靜的。楓與銀杏依偎而生，赤金相擁，其間偶爾夾雜一株不肯退場的蒼翠。</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-bg" style="background-color:#080415;background-image:url('https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&w=900&q=80');"></div>
+      <div class="card-veil"></div>
+      <div class="card-body">
+        <p class="card-where">首爾 · 夜闌</p>
+        <p class="card-title">雙面之城</p>
+        <p class="card-desc">入夜後，街邊的包車馬車次第亮起溫暖的燈火。油炸的酥香、辣醬的煙火氣與啤酒開蓋的脆響交織。白晝的首爾與入夜後的首爾，從來不是同一座城市。</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-bg" style="background-color:#100510;background-image:url('https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&w=900&q=80');"></div>
+      <div class="card-veil"></div>
+      <div class="card-body">
+        <p class="card-where">首爾 · 街角</p>
+        <p class="card-title">Chimaek</p>
+        <p class="card-desc">炸雞佐生啤，塑膠椅上的深夜食堂。這裡溢滿了霓虹燈火與微醺的人聲，韓文甚至為此造了專屬的詞——Chimaek，無需理由，這就是放縱的日常。</p>
+      </div>
+    </div>
+  </div>
+
+  <a class="vid-link fade" data-d="2" href="https://www.youtube.com/results?search_query=설악산+단풍+2024+4K" target="_blank" rel="noopener">
+    尋覓雪嶽山的秋色實景 →
+  </a>
+
+  <div class="timing fade" data-d="2">
+    <span class="timing-lbl">最佳時節</span>
+    <span class="timing-val" style="color:var(--kr)">十月</span>
+    <span class="timing-note">楓紅最高峰 &middot; 全年最舒適氣候 &middot; 金秋首爾</span>
+  </div>
+
+</div>
+
+
+<!-- ══════════ 06 · DECEMBER DUAL ══════════ -->
+<div class="tab" id="december">
+  <div class="tab-inner">
+    <span class="tab-n">06</span>
+    <span class="tab-rule"></span>
+    <span class="tab-word">December · 歲末交響</span>
+  </div>
+</div>
+
+<div class="dec-split">
+
+  <!-- Japan Winter -->
+  <div class="dec-panel" id="decJp" onclick="pickDec('decJp')">
+    <div class="dec-bg" style="background-color:#180008;background-image:url('https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=1200&q=80');"></div>
+    <div class="dec-veil"></div>
+    <div class="dec-divider"></div>
+    <div class="dec-txt">
+      <p class="dec-opt">序曲 A</p>
+      <h3 class="dec-h"><span style="color:var(--jpw)">銀冬霓彩</span><br>日本冬日誌</h3>
+      <p class="dec-sub">Tokyo · Kyoto · Hakone</p>
+      <p class="dec-desc">十二月的日本，退去了夏日的喧囂。表參道的枯枝掛滿繁星般的燈飾，六本木的冷冽玻璃折射著天明前的微光。箱根的溫泉旅館隱匿於落雪松林，浸入泉水時，頭頂是飄雪的清冷，身體是覆裹的熾熱，湯面薄霧氤氳。冬天的東京極其安靜，靜到足以聽見靈魂的呼吸。</p>
+      <button class="dec-btn">心折於此</button>
+    </div>
+  </div>
+
+  <!-- Europe Christmas -->
+  <div class="dec-panel" id="decEu" onclick="pickDec('decEu')">
+    <div class="dec-bg" style="background-color:#030615;background-image:url('https://images.unsplash.com/photo-1549989476-69a92fa57c36?auto=format&fit=crop&w=1200&q=80');background-position:center 40%;"></div>
+    <div class="dec-veil"></div>
+    <div class="dec-txt">
+      <p class="dec-opt">序曲 B</p>
+      <h3 class="dec-h"><span style="color:var(--eu)">古城頌歌</span><br>歐洲聖誕市集</h3>
+      <p class="dec-sub">Strasbourg · Prague · Vienna</p>
+      <p class="dec-desc">史特拉斯堡的集市傳承自一五七○年的隆冬。盛裝熱紅酒的陶杯帶著手心的溫度，每年更迭著專屬的圖騰。當白雪覆蓋布拉格的舊城廣場，濕潤的石板路倒映著橙金色的燈火。佇立在糖炒堅果的小攤旁，那股濃郁的甜香在寒風中擴散，是冬夜裡最溫柔的慰藉。</p>
+      <button class="dec-btn">心折於此</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- December video under split -->
+<div class="block" style="background:#080808;padding-top:32px;padding-bottom:48px;">
+  <div class="vid-section fade">
+    <p class="vid-label">史特拉斯堡 · 聖誕集市實景 ↓</p>
+    <div class="vid-wrap">
+      <iframe src="https://www.youtube.com/embed/CR3H-YuZYqs?rel=0&color=white" title="Strasbourg Christmas 2024 4K" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════ CLOSING ══════════ -->
+<section class="closing">
+  <div>
+    <h2 class="closing-h fade">這是我筆下的遠方。</h2>
+    <p class="closing-p fade" data-d="1">我想邀請你同行。因為有小精靈的時光，最是純粹快樂。</p>
+    <div class="closing-picks fade" data-d="2">
+      <p class="closing-picks-label">指引你的下一站</p>
+      <label class="pick"><input type="checkbox"><span class="pick-dot" style="background:var(--af)"></span>荒原之啟 · 塞倫蓋蒂</label>
+      <label class="pick"><input type="checkbox"><span class="pick-dot" style="background:var(--nl)"></span>郁金盛筵 · 庫肯霍夫</label>
+      <label class="pick"><input type="checkbox"><span class="pick-dot" style="background:var(--ic)"></span>子夜孤陽 · 永晝之境</label>
+      <label class="pick"><input type="checkbox"><span class="pick-dot" style="background:var(--jp)"></span>浮生煙華 · 花火大會</label>
+      <label class="pick"><input type="checkbox"><span class="pick-dot" style="background:var(--kr)"></span>霜林染赤 · 金秋楓面</label>
+      <label class="pick"><input type="checkbox"><span class="pick-dot" style="background:var(--jpw)"></span>歲末 · 銀冬霓彩日本</label>
+      <label class="pick"><input type="checkbox"><span class="pick-dot" style="background:var(--eu)"></span>歲末 · 古城頌歌歐洲</label>
+    </div>
+  </div>
+</section>
+
+
+<script>
+// Fade-in on scroll
+const io = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('go'); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade').forEach(el => io.observe(el));
+
+// Hero slow zoom
+const hio = new IntersectionObserver(es => {
+  es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('seen'); hio.unobserve(e.target); }
+  });
+}, { threshold: 0.05 });
+document.querySelectorAll('.hero').forEach(el => hio.observe(el));
+
+// December choice
+function pickDec(id) {
+  document.querySelectorAll('.dec-panel').forEach(p => p.classList.remove('chosen'));
+  document.getElementById(id).classList.add('chosen');
+}
+// Track December choice
+document.querySelectorAll('.dec-panel').forEach(p => {
+  p.addEventListener('click', () => {
+    if (window.posthog) posthog.capture('december_choice', { choice: p.id });
+  });
+});
+
+// Track closing picks
+document.querySelectorAll('.pick').forEach(p => {
+  p.addEventListener('change', () => {
+    const label = p.textContent.trim();
+    if (window.posthog) posthog.capture('destination_pick', { destination: label });
+  });
+});
+</script>
+
+<!-- PostHog Analytics -->
+<script>
+  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+  posthog.init('phc_mA75N9nkiRu4PJFC2CKviWhjUUeepBTsWCDMnGjjrHFw', {
+    api_host: 'https://us.i.posthog.com',
+    person_profiles: 'always',
+    capture_pageview: true,
+    capture_pageleave: true,
+    autocapture: true,
+    session_recording: { recordCrossOriginIframes: true }
+  });
+</script>
+
+</body>
+</html>
