@@ -168,6 +168,8 @@ nav {
   transition: background 0.3s;
 }
 .yg-item:hover { background: rgba(255,255,255,.03); }
+a.yg-item { text-decoration: none; color: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+a.yg-item:hover { background: rgba(255,255,255,.06); }
 .yg-num  { font-size: 9px; letter-spacing: .3em; color: rgba(240,237,232,.2); margin-bottom: 2px; }
 .yg-dest { font-size: 13px; font-weight: 400; letter-spacing: 0.1em; line-height: 1.3; }
 .yg-sub  { font-size: 9.5px; color: rgba(240,237,232,.3); line-height: 1.5; margin-top: 2px; }
@@ -565,7 +567,7 @@ nav {
 
 <!-- ── NAV ── -->
 <nav>
-  <a href="#top" class="nav-logo">歲時紀行</a>
+  <a href="index.html" class="nav-logo">歲時紀行</a>
   <div class="nav-right">
     <button class="hamburger" onclick="document.getElementById('overlayMenu').classList.add('open')" aria-label="Menu">
       <svg viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
@@ -578,14 +580,14 @@ nav {
 <div class="overlay-menu" id="overlayMenu">
   <button class="overlay-close" onclick="document.getElementById('overlayMenu').classList.remove('open')" aria-label="Close">&times;</button>
   <ul class="overlay-nav">
-    <li><a href="index.html" class="ov-home">首頁 &middot; 歲時紀行</a></li>
+    <li><a href="#top" class="ov-home ov-current" onclick="document.getElementById('overlayMenu').classList.remove('open')">首頁 &middot; 歲時紀行</a></li>
     <li><div class="ov-divider"></div></li>
-    <li><a href="africa.html" onclick="if(window.posthog)posthog.capture('navigate_itinerary',{from:'overlay',to:'africa'})"><span class="ov-dot" style="background:var(--af)"></span>荒原之啟 &middot; 塞倫蓋蒂</a></li>
-    <li><a href="netherlands.html" onclick="if(window.posthog)posthog.capture('navigate_itinerary',{from:'overlay',to:'netherlands'})"><span class="ov-dot" style="background:var(--nl)"></span>郁金盛筵 &middot; 庫肯霍夫</a></li>
-    <li><a href="iceland.html" onclick="if(window.posthog)posthog.capture('navigate_itinerary',{from:'overlay',to:'iceland'})"><span class="ov-dot" style="background:var(--ic)"></span>子夜孤陽 &middot; 永晝之境</a></li>
-    <li><a href="japan.html" onclick="if(window.posthog)posthog.capture('navigate_itinerary',{from:'overlay',to:'japan'})"><span class="ov-dot" style="background:var(--jp)"></span>浮生煙華 &middot; 花火大會</a></li>
-    <li><a href="korea.html" onclick="if(window.posthog)posthog.capture('navigate_itinerary',{from:'overlay',to:'korea'})"><span class="ov-dot" style="background:var(--kr)"></span>霜林染赤 &middot; 金秋楓面</a></li>
-    <li><a href="december.html" onclick="if(window.posthog)posthog.capture('navigate_itinerary',{from:'overlay',to:'december'})"><span class="ov-dot" style="background:var(--jpw)"></span>歲末交響</a></li>
+    <li><a href="africa.html" onclick="if(typeof posthog!=='undefined')posthog.capture('navigate_itinerary',{from:'index_overlay',to:'africa'})"><span class="ov-dot" style="background:var(--af)"></span>荒原之啟 &middot; 塞倫蓋蒂</a></li>
+    <li><a href="netherlands.html" onclick="if(typeof posthog!=='undefined')posthog.capture('navigate_itinerary',{from:'index_overlay',to:'netherlands'})"><span class="ov-dot" style="background:var(--nl)"></span>郁金盛筵 &middot; 庫肯霍夫</a></li>
+    <li><a href="iceland.html" onclick="if(typeof posthog!=='undefined')posthog.capture('navigate_itinerary',{from:'index_overlay',to:'iceland'})"><span class="ov-dot" style="background:var(--ic)"></span>子夜孤陽 &middot; 永晝之境</a></li>
+    <li><a href="japan.html" onclick="if(typeof posthog!=='undefined')posthog.capture('navigate_itinerary',{from:'index_overlay',to:'japan'})"><span class="ov-dot" style="background:var(--jp)"></span>浮生煙華 &middot; 花火大會</a></li>
+    <li><a href="korea.html" onclick="if(typeof posthog!=='undefined')posthog.capture('navigate_itinerary',{from:'index_overlay',to:'korea'})"><span class="ov-dot" style="background:var(--kr)"></span>霜林染赤 &middot; 金秋楓面</a></li>
+    <li><a href="december.html" onclick="if(typeof posthog!=='undefined')posthog.capture('navigate_itinerary',{from:'index_overlay',to:'december'})"><span class="ov-dot" style="background:var(--jpw)"></span>歲末交響</a></li>
   </ul>
 </div>
 
@@ -596,38 +598,38 @@ nav {
   <p class="cover-msg fade">未及啟程，<br>且隨我輕讀一紙遠方。</p>
 
   <div class="year-grid fade" data-d="1">
-    <div class="yg-item">
+    <a class="yg-item" href="africa.html" onclick="if(typeof posthog!=='undefined')posthog.capture('navigate_itinerary',{from:'cover_card',to:'africa'})">
       <span class="yg-num">01</span>
       <span class="yg-dest" style="color:var(--af)">荒原之啟</span>
       <span class="yg-sub">一月 · 二月</span>
-    </div>
-    <div class="yg-item">
+    </a>
+    <a class="yg-item" href="netherlands.html" onclick="if(typeof posthog!=='undefined')posthog.capture('navigate_itinerary',{from:'cover_card',to:'netherlands'})">
       <span class="yg-num">02</span>
       <span class="yg-dest" style="color:var(--nl)">郁金盛筵</span>
       <span class="yg-sub">三月 · 四月</span>
-    </div>
-    <div class="yg-item">
+    </a>
+    <a class="yg-item" href="iceland.html" onclick="if(typeof posthog!=='undefined')posthog.capture('navigate_itinerary',{from:'cover_card',to:'iceland'})">
       <span class="yg-num">03</span>
       <span class="yg-dest" style="color:var(--ic)">子夜孤陽</span>
       <span class="yg-sub">六月</span>
-    </div>
-    <div class="yg-item">
+    </a>
+    <a class="yg-item" href="japan.html" onclick="if(typeof posthog!=='undefined')posthog.capture('navigate_itinerary',{from:'cover_card',to:'japan'})">
       <span class="yg-num">04</span>
       <span class="yg-dest" style="color:var(--jp)">浮生煙華</span>
       <span class="yg-sub">七月</span>
-    </div>
-    <div class="yg-item">
+    </a>
+    <a class="yg-item" href="korea.html" onclick="if(typeof posthog!=='undefined')posthog.capture('navigate_itinerary',{from:'cover_card',to:'korea'})">
       <span class="yg-num">05</span>
       <span class="yg-dest" style="color:var(--kr)">霜林染赤</span>
       <span class="yg-sub">十月</span>
-    </div>
-    <div class="yg-item">
+    </a>
+    <a class="yg-item" href="december.html" onclick="if(typeof posthog!=='undefined')posthog.capture('navigate_itinerary',{from:'cover_card',to:'december'})">
       <span class="yg-num">06</span>
       <span class="yg-dest">歲末交響</span>
       <span class="yg-sub" style="color:var(--jpw)">冬夜燈火</span>
       <span class="yg-sub" style="color:rgba(240,237,232,.15)">or</span>
       <span class="yg-sub" style="color:var(--eu)">聖誕集市</span>
-    </div>
+    </a>
   </div>
 
   <div class="scroll-cue" aria-hidden="true">
