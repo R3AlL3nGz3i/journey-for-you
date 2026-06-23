@@ -560,7 +560,7 @@ nav {
 </div>
 
 <section class="hero" id="nl">
-  <div class="hero-bg" style="background-color:#1A2A00;background-image:url('https://images.unsplash.com/photo-1468327768560-75b778cbb551?auto=format&fit=crop&w=1920&q=80');"></div>
+  <div class="hero-bg" style="background-color:#1A2A00;background-image:url('https://images.unsplash.com/photo-1713791234964-9bd41543a20f?auto=format&fit=crop&w=1920&q=80');"></div>
   <div class="hero-veil"></div>
   <div class="hero-txt">
     <p class="hero-idx">02 &thinsp;/&thinsp; 荷蘭 · 庫肯霍夫 · 三月至四月</p>
@@ -586,7 +586,7 @@ nav {
 
   <div class="cards fade" data-d="1">
     <div class="card">
-      <div class="card-bg" style="background-color:#0A1A00;background-image:url('https://images.unsplash.com/photo-1462275646964-a0e3386b89fa?auto=format&fit=crop&w=900&q=80');"></div>
+      <div class="card-bg" style="background-color:#0A1A00;background-image:url('https://images.unsplash.com/photo-1774645456173-0fc2588ccfc3?auto=format&fit=crop&w=900&q=80');"></div>
       <div class="card-veil"></div>
       <div class="card-body">
         <p class="card-where">Lisse · 庫肯霍夫</p>
@@ -604,7 +604,7 @@ nav {
       </div>
     </div>
     <div class="card">
-      <div class="card-bg" style="background-color:#0A1200;background-image:url('https://images.unsplash.com/photo-1569025690938-a00729c9e1f9?auto=format&fit=crop&w=900&q=80');"></div>
+      <div class="card-bg" style="background-color:#0A1200;background-image:url('https://images.unsplash.com/photo-1569842231034-553c0535f691?auto=format&fit=crop&w=900&q=80');"></div>
       <div class="card-veil"></div>
       <div class="card-body">
         <p class="card-where">Kinderdijk · 小孩堤防</p>
@@ -958,7 +958,6 @@ document.querySelectorAll('.dec-panel').forEach(p => {
     if (window.posthog) posthog.capture('december_choice', { choice: p.id });
   });
 });
-
 // Track closing picks
 document.querySelectorAll('.pick').forEach(p => {
   p.addEventListener('change', () => {
@@ -967,8 +966,6 @@ document.querySelectorAll('.pick').forEach(p => {
   });
 });
 </script>
-
-<!-- PostHog Analytics -->
 <script>
   !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
   posthog.init('phc_mA75N9nkiRu4PJFC2CKviWhjUUeepBTsWCDMnGjjrHFw', {
@@ -980,6 +977,5 @@ document.querySelectorAll('.pick').forEach(p => {
     session_recording: { recordCrossOriginIframes: true }
   });
 </script>
-
 </body>
 </html>
