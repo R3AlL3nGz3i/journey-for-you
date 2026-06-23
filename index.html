@@ -580,12 +580,12 @@ nav {
   <ul class="overlay-nav">
     <li><a href="index.html" class="ov-home">首頁 &middot; 歲時紀行</a></li>
     <li><div class="ov-divider"></div></li>
-    <li><a class="ov-soon"><span class="ov-dot" style="background:var(--af)"></span>荒原之啟 &middot; 塞倫蓋蒂</a></li>
-    <li><a class="ov-soon"><span class="ov-dot" style="background:var(--nl)"></span>郁金盛筵 &middot; 庫肯霍夫</a></li>
-    <li><a class="ov-soon"><span class="ov-dot" style="background:var(--ic)"></span>子夜孤陽 &middot; 永晝之境</a></li>
+    <li><a href="africa.html" onclick="if(window.posthog)posthog.capture('navigate_itinerary',{from:'overlay',to:'africa'})"><span class="ov-dot" style="background:var(--af)"></span>荒原之啟 &middot; 塞倫蓋蒂</a></li>
+    <li><a href="netherlands.html" onclick="if(window.posthog)posthog.capture('navigate_itinerary',{from:'overlay',to:'netherlands'})"><span class="ov-dot" style="background:var(--nl)"></span>郁金盛筵 &middot; 庫肯霍夫</a></li>
+    <li><a href="iceland.html" onclick="if(window.posthog)posthog.capture('navigate_itinerary',{from:'overlay',to:'iceland'})"><span class="ov-dot" style="background:var(--ic)"></span>子夜孤陽 &middot; 永晝之境</a></li>
     <li><a href="japan.html" onclick="if(window.posthog)posthog.capture('navigate_itinerary',{from:'overlay',to:'japan'})"><span class="ov-dot" style="background:var(--jp)"></span>浮生煙華 &middot; 花火大會</a></li>
-    <li><a class="ov-soon"><span class="ov-dot" style="background:var(--kr)"></span>霜林染赤 &middot; 金秋楓面</a></li>
-    <li><a class="ov-soon"><span class="ov-dot" style="background:var(--jpw)"></span>歲末交響</a></li>
+    <li><a href="korea.html" onclick="if(window.posthog)posthog.capture('navigate_itinerary',{from:'overlay',to:'korea'})"><span class="ov-dot" style="background:var(--kr)"></span>霜林染赤 &middot; 金秋楓面</a></li>
+    <li><a href="december.html" onclick="if(window.posthog)posthog.capture('navigate_itinerary',{from:'overlay',to:'december'})"><span class="ov-dot" style="background:var(--jpw)"></span>歲末交響</a></li>
   </ul>
 </div>
 
@@ -653,7 +653,7 @@ nav {
     <p class="hero-idx">01 &thinsp;/&thinsp; 非洲 · 塞倫蓋蒂 · 一月至二月</p>
     <h2 class="hero-h">日誕千靈，<br><span>塞倫蓋蒂的狂野序章</span></h2>
     <p class="hero-loc">肯亞 &middot; 坦尚尼亞 &middot; 塞倫蓋蒂</p>
-    <a class="hero-explore soon">探索行程 &rarr;</a>
+    <a class="hero-explore live" href="africa.html" onclick="if(window.posthog)posthog.capture('navigate_itinerary',{from:'main_hero',to:'africa'})">探索行程 &rarr;</a>
   </div>
 </section>
 
@@ -715,7 +715,7 @@ nav {
     <span class="timing-note">生命誕生盛期 &middot; 捕獵頻次最高 &middot; 乾季前緣</span>
   </div>
 
-  <a class="explore-link soon fade" data-d="2">探索行程 &rarr;</a>
+  <a class="explore-link live fade" data-d="2" href="africa.html" onclick="if(window.posthog)posthog.capture('navigate_itinerary',{from:'main_section',to:'africa'})">探索行程 &rarr;</a>
 
 </div>
 
@@ -736,7 +736,7 @@ nav {
     <p class="hero-idx">02 &thinsp;/&thinsp; 荷蘭 · 庫肯霍夫 · 三月至四月</p>
     <h2 class="hero-h">織錦漫天，<br><span>七百萬株鬱金香的盛筵</span></h2>
     <p class="hero-loc">Lisse · Amsterdam · Kinderdijk</p>
-    <a class="hero-explore soon">探索行程 &rarr;</a>
+    <a class="hero-explore live" href="netherlands.html" onclick="if(window.posthog)posthog.capture('navigate_itinerary',{from:'main_hero',to:'netherlands'})">探索行程 &rarr;</a>
   </div>
 </section>
 
@@ -795,7 +795,7 @@ nav {
     <span class="timing-note">鬱金香極盛期 &middot; 庫肯霍夫限定開放</span>
   </div>
 
-  <a class="explore-link soon fade" data-d="2">探索行程 &rarr;</a>
+  <a class="explore-link live fade" data-d="2" href="netherlands.html" onclick="if(window.posthog)posthog.capture('navigate_itinerary',{from:'main_section',to:'netherlands'})">探索行程 &rarr;</a>
 
 </div>
 
@@ -816,7 +816,7 @@ nav {
     <p class="hero-idx">03 &thinsp;/&thinsp; 冰島 · 六月 · 永晝</p>
     <h2 class="hero-h">子夜不落，<br><span>永晝之境的鎏金懸日</span></h2>
     <p class="hero-loc">Reykjavik · 黃金圈 · 南部海岸</p>
-    <a class="hero-explore soon">探索行程 &rarr;</a>
+    <a class="hero-explore live" href="iceland.html" onclick="if(window.posthog)posthog.capture('navigate_itinerary',{from:'main_hero',to:'iceland'})">探索行程 &rarr;</a>
   </div>
 </section>
 
@@ -875,7 +875,7 @@ nav {
     <span class="timing-note">永晝之巔 &middot; 全年氣候最溫和 &middot; 靜謐之夏</span>
   </div>
 
-  <a class="explore-link soon fade" data-d="2">探索行程 &rarr;</a>
+  <a class="explore-link live fade" data-d="2" href="iceland.html" onclick="if(window.posthog)posthog.capture('navigate_itinerary',{from:'main_section',to:'iceland'})">探索行程 &rarr;</a>
 
 </div>
 
@@ -980,7 +980,7 @@ nav {
     <p class="hero-idx">05 &thinsp;/&thinsp; 韓國 · 十月</p>
     <h2 class="hero-h">赤楓流金，<br><span>交疊於晚秋的同一抹山色</span></h2>
     <p class="hero-loc">首爾 · 雪嶽山 · 內藏山</p>
-    <a class="hero-explore soon">探索行程 &rarr;</a>
+    <a class="hero-explore live" href="korea.html" onclick="if(window.posthog)posthog.capture('navigate_itinerary',{from:'main_hero',to:'korea'})">探索行程 &rarr;</a>
   </div>
 </section>
 
@@ -1039,7 +1039,7 @@ nav {
     <span class="timing-note">楓紅最高峰 &middot; 全年最舒適氣候 &middot; 金秋首爾</span>
   </div>
 
-  <a class="explore-link soon fade" data-d="2">探索行程 &rarr;</a>
+  <a class="explore-link live fade" data-d="2" href="korea.html" onclick="if(window.posthog)posthog.capture('navigate_itinerary',{from:'main_section',to:'korea'})">探索行程 &rarr;</a>
 
 </div>
 
@@ -1112,13 +1112,13 @@ nav {
     </div>
     <div class="pick-actions" id="pickActions">
       <span style="font-size:9.5px;letter-spacing:.35em;color:rgba(255,255,255,.25);width:100%;margin-bottom:4px;">前往行程</span>
-      <a class="pick-action soon" data-pick="0">荒原之啟</a>
-      <a class="pick-action soon" data-pick="1">郁金盛筵</a>
-      <a class="pick-action soon" data-pick="2">子夜孤陽</a>
+      <a class="pick-action" data-pick="0" href="africa.html">荒原之啟 &rarr;</a>
+      <a class="pick-action" data-pick="1" href="netherlands.html">郁金盛筵 &rarr;</a>
+      <a class="pick-action" data-pick="2" href="iceland.html">子夜孤陽 &rarr;</a>
       <a class="pick-action" data-pick="3" href="japan.html" onclick="if(window.posthog)posthog.capture('navigate_itinerary',{from:'main_picks',to:'japan'})">浮生煙華 &rarr;</a>
-      <a class="pick-action soon" data-pick="4">霜林染赤</a>
-      <a class="pick-action soon" data-pick="5">歲末 · 日本</a>
-      <a class="pick-action soon" data-pick="6">歲末 · 歐洲</a>
+      <a class="pick-action" data-pick="4" href="korea.html">霜林染赤 &rarr;</a>
+      <a class="pick-action" data-pick="5" href="december.html">歲末 · 日本 &rarr;</a>
+      <a class="pick-action" data-pick="6" href="december.html">歲末 · 歐洲 &rarr;</a>
     </div>
   </div>
 </section>

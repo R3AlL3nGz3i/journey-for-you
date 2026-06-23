@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>子夜孤陽 · 五日永晝紀行</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Noto+Serif+TC:wght@300;400;700;900&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+
+<script>
+!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+posthog.init('phc_mA75N9nkiRu4PJFC2CKviWhjUUeepBTsWCDMnGjjrHFw', {
+    api_host: 'https://us.i.posthog.com',
+    person_profiles: 'always',
+    capture_pageview: true,
+    capture_pageleave: true,
+    autocapture: true,
+    session_recording: { recordCrossOriginIframes: true }
+});
+</script>
+
+<style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+:root {
+  --bg: #080808;
+  --txt: #F0EDE8;
+  --dim: rgba(240,237,232,0.48);
+  --pad: clamp(24px, 7vw, 88px);
+  --gap: clamp(16px, 4vw, 24px);
+  --af:  #C8870A;
+  --nl:  #4A9B2A;
+  --ic:  #1D9E75;
+  --jp:  #E07820;
+  --kr:  #7B6FD4;
+  --jpw: #E85B7A;
+  --eu:  #5B9EE8;
+}
+
+body {
+  background: var(--bg);
+  color: var(--txt);
+  font-family: 'Noto Sans TC', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- NAV --- */
+nav {
+  position: fixed;
+  top: 0; inset-inline: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px var(--pad);
+  background: rgba(8,8,8,.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,.03);
+}
+.nav-logo {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-decoration: none;
+  color: var(--txt);
+}
+.nav-wa {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 10px; letter-spacing: .3em; text-transform: uppercase;
+  color: rgba(255,255,255,.35); text-decoration: none; transition: color .3s;
+}
+.nav-wa:hover { color: var(--txt); }
+.nav-wa svg { width: 14px; height: 14px; fill: currentColor; }
+.nav-back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  letter-spacing: .4em;
+  text-transform: uppercase;
+  color: var(--dim);
+  text-decoration: none;
+  transition: color .3s;
+}
+.nav-back:hover { color: var(--txt); }
+.nav-back svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+.nav-right { display: flex; align-items: center; gap: 16px; }
+
+/* --- HAMBURGER --- */
+.hamburger {
+  display: flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px;
+  background: none; border: none; cursor: pointer;
+  padding: 0; -webkit-tap-highlight-color: transparent;
+}
+.hamburger svg { width: 22px; height: 22px; stroke: var(--dim); fill: none; stroke-width: 1.5; transition: stroke .3s; }
+.hamburger:hover svg { stroke: var(--txt); }
+
+/* --- OVERLAY MENU --- */
+.overlay-menu {
+  position: fixed; inset: 0; z-index: 999;
+  background: rgba(8,8,8,0.97);
+  backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  opacity: 0; visibility: hidden;
+  transition: opacity .35s ease, visibility .35s ease;
+  padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0) env(safe-area-inset-bottom, 0) env(safe-area-inset-left, 0);
+}
+.overlay-menu.open { opacity: 1; visibility: visible; }
+.overlay-close {
+  position: absolute; top: 16px; right: var(--pad);
+  width: 48px; height: 48px;
+  display: flex; align-items: center; justify-content: center;
+  background: none; border: none; cursor: pointer;
+  font-size: 24px; color: var(--dim); transition: color .3s;
+  -webkit-tap-highlight-color: transparent;
+}
+.overlay-close:hover { color: var(--txt); }
+.overlay-nav { list-style: none; text-align: center; padding: 0; margin: 0; }
+.overlay-nav li { margin: 0; }
+.overlay-nav a {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 52px; padding: 8px 24px;
+  font-family: 'Noto Serif TC', serif;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  font-weight: 400; letter-spacing: 0.12em;
+  color: var(--txt); text-decoration: none;
+  transition: color .3s, opacity .3s;
+  -webkit-tap-highlight-color: transparent;
+}
+.overlay-nav a:active { opacity: .6; }
+.overlay-nav .ov-dot {
+  display: inline-block; width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+}
+.overlay-nav .ov-soon {
+  color: rgba(240,237,232,0.22); pointer-events: none;
+}
+.overlay-nav .ov-soon .ov-dot { opacity: .35; }
+.overlay-nav .ov-divider {
+  width: 40px; height: 1px; background: rgba(255,255,255,.06);
+  margin: 12px auto;
+}
+.overlay-nav .ov-home {
+  font-size: clamp(0.85rem, 2vw, 1rem);
+  letter-spacing: .2em;
+  color: var(--dim);
+  margin-bottom: 4px;
+}
+.overlay-nav .ov-current {
+  color: var(--txt);
+  position: relative;
+}
+.overlay-nav .ov-current::after {
+  content: '';
+  position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%);
+  width: 20px; height: 1px; background: rgba(255,255,255,.3);
+}
+
+/* --- HERO (short) --- */
+.hero {
+  height: 60svh;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.08);
+  transition: transform 2.2s cubic-bezier(.16,1,.3,1);
+}
+.hero.seen .hero-bg { transform: scale(1); }
+.hero-veil {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(to top, rgba(8,8,8,1) 0%, rgba(8,8,8,.7) 30%, rgba(8,8,8,.15) 65%, transparent 100%),
+    linear-gradient(to right, rgba(8,8,8,.3) 0%, transparent 60%);
+}
+.hero-txt {
+  position: relative; z-index: 1;
+  padding: 0 var(--pad) clamp(48px, 8vw, 80px);
+  max-width: 920px;
+  border-left: 2px solid rgba(255,255,255,0.05);
+  margin-left: -2px;
+  padding-left: calc(var(--pad) + 12px);
+}
+.hero-idx {
+  font-size: 10px;
+  letter-spacing: .4em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+  margin-bottom: 16px;
+}
+.hero-h {
+  font-family: 'Noto Serif TC', serif;
+  font-weight: 400;
+  font-size: clamp(1.8rem, 5.5vw, 3.6rem);
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+  margin-bottom: 14px;
+}
+.hero-h span { font-weight: 700; }
+.hero-sub {
+  font-family: 'Noto Serif TC', serif;
+  font-size: clamp(0.85rem, 1.6vw, 1.05rem);
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  color: rgba(255,255,255,.35);
+}
+
+/* --- DAY COUNTER (fixed) --- */
+.day-counter {
+  position: fixed;
+  top: 50%;
+  right: clamp(16px, 3vw, 36px);
+  transform: translateY(-50%);
+  z-index: 150;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  opacity: 0;
+  transition: opacity .5s;
+}
+.day-counter.visible { opacity: 1; }
+.day-counter-label {
+  font-size: 8px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.25);
+  writing-mode: vertical-rl;
+  margin-bottom: 8px;
+}
+.day-counter-n {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  color: var(--ic);
+  line-height: 1;
+  transition: opacity .3s, transform .3s;
+}
+.day-counter-total {
+  font-size: 9px;
+  letter-spacing: .2em;
+  color: rgba(255,255,255,.15);
+}
+.day-counter-dots {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+}
+.day-counter-dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.12);
+  transition: background .3s, transform .3s;
+}
+.day-counter-dot.active {
+  background: var(--ic);
+  transform: scale(1.4);
+}
+
+/* --- TIMELINE --- */
+.timeline {
+  padding: 0 var(--pad);
+  position: relative;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  left: calc(var(--pad) + 60px);
+  width: 1px;
+  background: rgba(255,255,255,.05);
+}
+@media (max-width: 768px) {
+  .timeline::before {
+    left: calc(var(--pad) + 20px);
+  }
+}
+
+/* --- DAY SECTION --- */
+.day {
+  padding: 80px 0;
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 40px;
+  position: relative;
+}
+@media (max-width: 768px) {
+  .day {
+    grid-template-columns: 40px 1fr;
+    gap: 20px;
+    padding: 60px 0;
+  }
+}
+.day + .day {
+  border-top: 1px solid rgba(255,255,255,.04);
+}
+
+/* Day left column */
+.day-marker {
+  position: sticky;
+  top: 120px;
+  align-self: start;
+  text-align: center;
+}
+.day-num {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  color: var(--ic);
+  line-height: 1;
+  opacity: 0.7;
+}
+.day-kanji {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 10px;
+  letter-spacing: .3em;
+  color: rgba(255,255,255,.2);
+  margin-top: 8px;
+  writing-mode: vertical-rl;
+  display: inline-block;
+}
+
+/* Day right column */
+.day-content { min-width: 0; }
+
+.day-header {
+  margin-bottom: 40px;
+}
+.day-title {
+  font-family: 'Noto Serif TC', serif;
+  font-size: clamp(1.2rem, 2.8vw, 1.8rem);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+.day-date {
+  font-size: 10px;
+  letter-spacing: .4em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.3);
+}
+
+/* Time blocks */
+.time-block {
+  margin-bottom: 36px;
+}
+.time-label {
+  font-size: 9px;
+  letter-spacing: .5em;
+  text-transform: uppercase;
+  color: var(--ic);
+  opacity: 0.6;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.time-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(255,255,255,.04);
+}
+.time-desc {
+  font-size: clamp(0.82rem, 1.5vw, 0.92rem);
+  line-height: 2;
+  color: rgba(255,255,255,.55);
+  letter-spacing: 0.04em;
+  text-align: justify;
+}
+
+/* Day image */
+.day-image {
+  margin: 28px 0;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+  background: #111;
+  border: 1px solid rgba(255,255,255,.03);
+}
+.day-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .9s cubic-bezier(.16,1,.3,1);
+}
+.day-image:hover img { transform: scale(1.04); }
+.day-image-caption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 24px 16px 12px;
+  background: linear-gradient(to top, rgba(0,0,0,.7), transparent);
+  font-size: 10px;
+  letter-spacing: .2em;
+  color: rgba(255,255,255,.4);
+}
+
+/* Secondary image (smaller, inline) */
+.day-image-secondary {
+  margin: 20px 0;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3/2;
+  background: #111;
+  border: 1px solid rgba(255,255,255,.03);
+  max-width: 480px;
+}
+.day-image-secondary img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .9s cubic-bezier(.16,1,.3,1);
+}
+.day-image-secondary:hover img { transform: scale(1.04); }
+
+/* Restaurant card */
+.restaurant {
+  margin: 28px 0;
+  padding: 20px 24px;
+  border: 1px solid rgba(255,255,255,.06);
+  background: rgba(255,255,255,.015);
+  position: relative;
+  transition: background .3s, border-color .3s;
+}
+.restaurant:hover {
+  background: rgba(255,255,255,.03);
+  border-color: rgba(255,255,255,.1);
+}
+.restaurant-tag {
+  font-size: 8px;
+  letter-spacing: .5em;
+  text-transform: uppercase;
+  color: var(--ic);
+  opacity: 0.5;
+  margin-bottom: 10px;
+}
+.restaurant-name {
+  font-family: 'Noto Serif TC', serif;
+  font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+.restaurant-meta {
+  font-size: 10px;
+  color: rgba(255,255,255,.3);
+  letter-spacing: .15em;
+  margin-bottom: 10px;
+}
+.restaurant-note {
+  font-size: clamp(0.78rem, 1.3vw, 0.84rem);
+  line-height: 1.9;
+  color: rgba(255,255,255,.4);
+}
+
+/* --- SURPRISE REVEAL --- */
+.surprise {
+  margin: 36px 0;
+  position: relative;
+}
+.surprise-trigger {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border: 1px dashed rgba(29,158,117,.2);
+  background: rgba(29,158,117,.03);
+  cursor: pointer;
+  transition: all .4s;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.surprise-trigger:hover {
+  border-color: rgba(29,158,117,.35);
+  background: rgba(29,158,117,.06);
+}
+.surprise-icon {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: rgba(29,158,117,.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: transform .4s cubic-bezier(.16,1,.3,1);
+  flex-shrink: 0;
+}
+.surprise.open .surprise-icon { transform: rotate(90deg); }
+.surprise-prompt {
+  font-size: 11px;
+  letter-spacing: .15em;
+  color: rgba(29,158,117,.6);
+}
+.surprise-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .6s cubic-bezier(.16,1,.3,1), opacity .4s ease;
+  opacity: 0;
+}
+.surprise.open .surprise-content {
+  max-height: 500px;
+  opacity: 1;
+}
+.surprise-inner {
+  padding: 20px 24px;
+  border: 1px solid rgba(29,158,117,.1);
+  border-top: none;
+  background: rgba(29,158,117,.02);
+}
+.surprise-text {
+  font-family: 'Noto Serif TC', serif;
+  font-size: clamp(0.85rem, 1.5vw, 0.95rem);
+  line-height: 2;
+  color: rgba(240,237,232,.7);
+  letter-spacing: 0.06em;
+}
+
+/* --- PRACTICAL INFO ACCORDION --- */
+.practical {
+  padding: clamp(60px, 10vw, 100px) var(--pad);
+  border-top: 1px solid rgba(255,255,255,.04);
+}
+.practical-title {
+  font-family: 'Noto Serif TC', serif;
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  margin-bottom: 40px;
+  color: rgba(240,237,232,.7);
+}
+
+.accordion-item {
+  border-bottom: 1px solid rgba(255,255,255,.04);
+}
+.accordion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: color .3s;
+}
+.accordion-header:hover { color: var(--txt); }
+.accordion-label {
+  font-size: clamp(0.85rem, 1.5vw, 0.95rem);
+  letter-spacing: 0.1em;
+  color: var(--dim);
+  transition: color .3s;
+}
+.accordion-header:hover .accordion-label { color: var(--txt); }
+.accordion-chevron {
+  width: 16px; height: 16px;
+  stroke: var(--dim);
+  fill: none;
+  stroke-width: 1.5;
+  transition: transform .4s cubic-bezier(.16,1,.3,1);
+  flex-shrink: 0;
+}
+.accordion-item.open .accordion-chevron {
+  transform: rotate(180deg);
+}
+.accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .5s cubic-bezier(.16,1,.3,1), opacity .3s ease;
+  opacity: 0;
+}
+.accordion-item.open .accordion-body {
+  max-height: 600px;
+  opacity: 1;
+}
+.accordion-content {
+  padding: 0 0 24px;
+}
+.accordion-content p,
+.accordion-content li {
+  font-size: clamp(0.78rem, 1.3vw, 0.86rem);
+  line-height: 2;
+  color: rgba(255,255,255,.45);
+  letter-spacing: 0.04em;
+}
+.accordion-content ul {
+  list-style: none;
+  padding: 0;
+}
+.accordion-content li::before {
+  content: '';
+  display: inline-block;
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: rgba(29,158,117,.3);
+  margin-right: 12px;
+  vertical-align: middle;
+}
+
+/* Practical image */
+.practical-image {
+  margin: 20px 0 32px;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 21/9;
+  background: #111;
+  border: 1px solid rgba(255,255,255,.03);
+}
+.practical-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- FOOTER / CTA --- */
+.footer {
+  padding: clamp(80px, 12vw, 140px) var(--pad);
+  text-align: center;
+  background: var(--bg);
+}
+.footer-msg {
+  font-family: 'Noto Serif TC', serif;
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  color: rgba(240,237,232,.8);
+}
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 40px;
+  border: 1px solid rgba(29,158,117,.3);
+  background: rgba(29,158,117,.06);
+  color: var(--ic);
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: .35em;
+  cursor: pointer;
+  transition: all .4s cubic-bezier(.16,1,.3,1);
+  min-height: 52px;
+  position: relative;
+  overflow: hidden;
+}
+.cta-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(29,158,117,.08);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .5s cubic-bezier(.16,1,.3,1);
+}
+.cta-btn:hover::before { transform: scaleX(1); }
+.cta-btn:hover {
+  border-color: rgba(29,158,117,.6);
+  color: var(--txt);
+}
+.cta-btn span { position: relative; z-index: 1; }
+.cta-btn svg {
+  width: 16px; height: 16px;
+  stroke: currentColor; fill: none; stroke-width: 1.5;
+  position: relative; z-index: 1;
+  transition: transform .3s;
+}
+.cta-btn:hover svg { transform: translateX(4px); }
+
+/* CTA launch animation */
+.cta-btn.launched {
+  border-color: var(--ic);
+  background: rgba(29,158,117,.15);
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(29,158,117,0); }
+  50% { box-shadow: 0 0 30px 4px rgba(29,158,117,.2); }
+}
+.cta-btn.launched { animation: pulse-glow 1.2s ease-out; }
+
+/* --- EXPLORE MORE --- */
+.explore-more {
+  padding: clamp(60px, 10vw, 100px) var(--pad) clamp(40px, 6vw, 60px);
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,.04);
+}
+.explore-more-label {
+  font-size: 10.5px; letter-spacing: .4em; text-transform: uppercase;
+  color: rgba(255,255,255,.25); margin-bottom: 24px;
+}
+.explore-pills {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+}
+.explore-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 11px; letter-spacing: .15em;
+  padding: 10px 22px; border-radius: 100px;
+  border: 1px solid rgba(255,255,255,.08);
+  color: rgba(255,255,255,.4); text-decoration: none;
+  font-family: 'Noto Sans TC', sans-serif;
+  transition: all .3s;
+}
+.explore-pill:hover { border-color: rgba(255,255,255,.25); color: var(--txt); background: rgba(255,255,255,.03); }
+.explore-pill.soon { pointer-events: none; opacity: .3; border-style: dashed; }
+.explore-pill-dot {
+  width: 5px; height: 5px; border-radius: 50%; opacity: .5;
+}
+
+/* --- FADE ANIMATIONS --- */
+.fade { opacity: 0; transform: translateY(20px); transition: opacity .9s ease, transform .9s ease; }
+.fade.go  { opacity: 1; transform: none; }
+.fade[data-d="1"] { transition-delay: .15s; }
+.fade[data-d="2"] { transition-delay: .3s; }
+
+/* --- SAFE AREA --- */
+@supports (padding: max(0px)) {
+  nav         { padding-left: max(var(--pad), env(safe-area-inset-left)); padding-right: max(var(--pad), env(safe-area-inset-right)); }
+  .hero-txt   { padding-left: max(var(--pad), env(safe-area-inset-left)); }
+  .timeline   { padding-left: max(var(--pad), env(safe-area-inset-left)); padding-right: max(var(--pad), env(safe-area-inset-right)); }
+  .practical  { padding-left: max(var(--pad), env(safe-area-inset-left)); padding-right: max(var(--pad), env(safe-area-inset-right)); }
+  .footer     { padding-left: max(var(--pad), env(safe-area-inset-left)); padding-right: max(var(--pad), env(safe-area-inset-right)); }
+  .explore-more { padding-left: max(var(--pad), env(safe-area-inset-left)); padding-right: max(var(--pad), env(safe-area-inset-right)); }
+}
+
+/* --- MOBILE DAY COUNTER --- */
+@media (max-width: 768px) {
+  .day-counter {
+    top: auto;
+    bottom: 20px;
+    right: 16px;
+    transform: none;
+    flex-direction: row;
+    gap: 8px;
+    background: rgba(8,8,8,.9);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 8px 14px;
+    border: 1px solid rgba(255,255,255,.05);
+    border-radius: 100px;
+  }
+  .day-counter-label {
+    writing-mode: horizontal-tb;
+    margin-bottom: 0;
+    margin-right: 4px;
+  }
+  .day-counter-n { font-size: 1.2rem; }
+  .day-counter-dots { flex-direction: row; margin-top: 0; margin-left: 4px; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- -- NAV -- -->
+<nav>
+  <a href="index.html" class="nav-back" onclick="if(typeof posthog!=='undefined')posthog.capture('navigate_itinerary',{from:'iceland',to:'main'})">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    <span>歲時紀行</span>
+  </a>
+  <a href="#top" class="nav-logo">子夜孤陽</a>
+  <div class="nav-right">
+    <a class="nav-wa" href="#reply" title="回覆"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+    <button class="hamburger" onclick="document.getElementById('overlayMenu').classList.add('open')" aria-label="Menu">
+      <svg viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- -- OVERLAY MENU -- -->
+<div class="overlay-menu" id="overlayMenu">
+  <button class="overlay-close" onclick="document.getElementById('overlayMenu').classList.remove('open')" aria-label="Close">&times;</button>
+  <ul class="overlay-nav">
+    <li><a href="index.html" class="ov-home" onclick="if(typeof posthog!=='undefined')posthog.capture('navigate_itinerary',{from:'iceland_overlay',to:'main'})">首頁 &middot; 歲時紀行</a></li>
+    <li><div class="ov-divider"></div></li>
+    <li><a class="ov-soon"><span class="ov-dot" style="background:var(--af)"></span>荒原之啟 &middot; 塞倫蓋蒂</a></li>
+    <li><a class="ov-soon"><span class="ov-dot" style="background:var(--nl)"></span>郁金盛筵 &middot; 庫肯霍夫</a></li>
+    <li><a href="#top" class="ov-current" onclick="document.getElementById('overlayMenu').classList.remove('open')"><span class="ov-dot" style="background:var(--ic)"></span>子夜孤陽 &middot; 永晝之境</a></li>
+    <li><a href="japan.html" onclick="if(typeof posthog!=='undefined')posthog.capture('navigate_itinerary',{from:'iceland_overlay',to:'japan'})"><span class="ov-dot" style="background:var(--jp)"></span>浮生煙華 &middot; 花火大會</a></li>
+    <li><a class="ov-soon"><span class="ov-dot" style="background:var(--kr)"></span>霜林染赤 &middot; 金秋楓面</a></li>
+    <li><a class="ov-soon"><span class="ov-dot" style="background:var(--jpw)"></span>歲末交響</a></li>
+  </ul>
+</div>
+
+
+<!-- ========== HERO ========== -->
+<section class="hero" id="top">
+  <div class="hero-bg" style="background-color:#0a1a14;background-image:url('https://images.unsplash.com/photo-1579271201881-02817750c7e7?auto=format&fit=crop&w=1920&q=80');"></div>
+  <div class="hero-veil"></div>
+  <div class="hero-txt fade">
+    <p class="hero-idx">03 &thinsp;/&thinsp; 冰島 &middot; 六月 &middot; 永晝之境</p>
+    <h2 class="hero-h"><span style="color:var(--ic)">子夜孤陽</span><br>五日永晝紀行</h2>
+    <p class="hero-sub">2027 &middot; 六月 &middot; 冰島 &middot; 環島公路</p>
+  </div>
+</section>
+
+
+<!-- -- DAY COUNTER (fixed) -- -->
+<div class="day-counter" id="dayCounter">
+  <span class="day-counter-label">Day</span>
+  <span class="day-counter-n" id="dayCounterN">1</span>
+  <span class="day-counter-total">/ 5</span>
+  <div class="day-counter-dots">
+    <span class="day-counter-dot active" data-day="1"></span>
+    <span class="day-counter-dot" data-day="2"></span>
+    <span class="day-counter-dot" data-day="3"></span>
+    <span class="day-counter-dot" data-day="4"></span>
+    <span class="day-counter-dot" data-day="5"></span>
+  </div>
+</div>
+
+
+<!-- ========== TIMELINE ========== -->
+<div class="timeline">
+
+  <!-- ---- DAY 1 ---- -->
+  <section class="day" data-day="1">
+    <div class="day-marker fade">
+      <div class="day-num">1</div>
+      <span class="day-kanji">金環</span>
+    </div>
+    <div class="day-content">
+      <div class="day-header fade">
+        <h3 class="day-title">金色之環 &middot; 大地的裂縫</h3>
+        <p class="day-date">六月十八日 &middot; 星期四</p>
+      </div>
+
+      <div class="time-block fade">
+        <p class="time-label">午前</p>
+        <p class="time-desc">飛機落地凱夫拉維克的那一刻，你會先聞到風裡帶著硫磺和海鹽的氣息。不急，取了車，沿一號公路往東。第一站是辛格維利爾國家公園 &mdash; 北美板塊和歐亞板塊在這裡裂開一道峽谷，你可以真的走在兩個大陸之間。Almannagjá 裂谷的步道往下走，盡頭是 Öxarárfoss 瀑布，水聲在玄武岩牆壁之間回響。這是全世界唯一一個能徒步穿越板塊裂縫的地方，而我們在這裡開始。</p>
+      </div>
+
+      <div class="time-block fade" data-d="1">
+        <p class="time-label">午後</p>
+        <p class="time-desc">繼續沿金環公路走。Strokkur 間歇泉每五到八分鐘噴發一次，噴柱高達二十公尺 &mdash; 你會聽到地底先發出一聲沉悶的嘆息，然後滾燙的水柱衝上天空。接著是 Gullfoss，黃金瀑布。冰川融水分成兩層階梯墜入三十二公尺深的峽谷，水霧在陽光裡散成彩虹。站在觀景台的時候，我想牽住你的手 &mdash; 不是因為害怕，是因為美到需要確認對方也在看。</p>
+      </div>
+
+      <div class="day-image fade" data-d="1">
+        <img src="https://images.unsplash.com/photo-1579271201881-02817750c7e7?auto=format&fit=crop&w=900&q=80" alt="Strokkur 間歇泉在夕陽下噴發" loading="lazy">
+        <span class="day-image-caption">Geysir 地熱區 &middot; Strokkur 間歇泉</span>
+      </div>
+
+      <div class="time-block fade" data-d="2">
+        <p class="time-label">傍晚 &amp; 永晝</p>
+        <p class="time-desc">六月的冰島，太陽不會落下。繞到 Kerið 火山口湖 &mdash; 一個三千年前噴發後塌陷的火山錐，湖水是不真實的碧藍色。晚上十一點，陽光變成琥珀色，從極低的角度打在火山口的紅色岩壁上。整個世界安靜得像一幅畫，而我們是畫裡唯一的人。</p>
+      </div>
+
+      <div class="restaurant fade">
+        <p class="restaurant-tag">午餐</p>
+        <p class="restaurant-name">Friðheimar 番茄農場</p>
+        <p class="restaurant-meta">Reykholt, 金環公路上 &middot; 溫室農場餐廳</p>
+        <p class="restaurant-note">在巨大的玻璃溫室裡用餐，四周都是番茄藤蔓和嗡嗡飛的授粉蜜蜂。招牌是無限續碗的番茄湯配現烤麵包 &mdash; 暖的、甜的、帶一點酸。再來一杯 Healthy Mary（他們自釀的番茄版 Bloody Mary）。務必提前預約，夏天經常客滿。兩個人大約 ISK 8,000&ndash;12,000。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---- DAY 2 ---- -->
+  <section class="day" data-day="2">
+    <div class="day-marker fade">
+      <div class="day-num">2</div>
+      <span class="day-kanji">水簾</span>
+    </div>
+    <div class="day-content">
+      <div class="day-header fade">
+        <h3 class="day-title">瀑布之歌 &middot; 水簾之後</h3>
+        <p class="day-date">六月十九日 &middot; 星期五</p>
+      </div>
+
+      <div class="time-block fade">
+        <p class="time-label">午前</p>
+        <p class="time-desc">今天往南海岸走。第一站，Seljalandsfoss。六十公尺高的瀑布從懸崖邊緣墜下，而你可以走到它的後面 &mdash; 穿過水簾，看世界透過落水變得模糊又清晰。你一定會濕透，但六月的光線穿過水幕的那個瞬間，值得任何代價。走出來以後，往東兩百公尺，有一條窄得幾乎看不見的岩縫。擠進去 &mdash; 裡面藏著 Gljúfrabúi，一座被峽谷完全包裹的秘密瀑布。大多數遊客都不知道它的存在。</p>
+      </div>
+
+      <div class="day-image fade" data-d="1">
+        <img src="https://images.unsplash.com/photo-1506261423908-ea2559c1f24c?auto=format&fit=crop&w=900&q=80" alt="Seljalandsfoss 瀑布背面的夕陽" loading="lazy">
+        <span class="day-image-caption">Seljalandsfoss &middot; 走到瀑布後面看世界</span>
+      </div>
+
+      <div class="time-block fade" data-d="1">
+        <p class="time-label">午後</p>
+        <p class="time-desc">Skógafoss &mdash; 冰島最壯觀的瀑布之一。二十五公尺寬的水牆從六十公尺高處傾瀉而下，站在底部你的整個視野只剩下水和霧。爬上旁邊的 527 級階梯到瀑布頂端，回頭望，整片南部海岸線和黑色沙灘一直延伸到海平面。如果你還有力氣，「瀑布之路」步道會帶你走過二十多座隱藏的小瀑布 &mdash; 但今天不急，我們把下午留給另一個更震撼的地方。</p>
+      </div>
+
+      <div class="time-block fade" data-d="2">
+        <p class="time-label">傍晚 &amp; 永晝</p>
+        <p class="time-desc">Reynisfjara 黑沙灘。玄武岩柱像管風琴一樣整齊地排列在 Hálsanefshellir 洞穴裡，海浪拍打黑色的沙灘，Reynisdrangar 海蝕柱在海霧裡若隱若現。傳說那是兩個試圖把船拖上岸的巨人，被日出的光線變成了石頭。午夜的時候，太陽不會落下，只是沉到海平面附近 &mdash; 金色的光打在黑色的沙上，那個對比美得讓人忘記呼吸。但請小心偷襲浪，永遠不要背對大海。</p>
+      </div>
+
+      <div class="day-image fade" data-d="2">
+        <img src="https://images.unsplash.com/photo-1751989802391-c3f8d586d851?auto=format&fit=crop&w=900&q=80" alt="Reynisfjara 黑沙灘與海蝕柱" loading="lazy">
+        <span class="day-image-caption">Reynisfjara &middot; 黑沙灘與 Reynisdrangar 海蝕柱</span>
+      </div>
+
+      <div class="day-image-secondary fade" data-d="2">
+        <img src="https://images.unsplash.com/photo-1513353804666-e9b8a5fa8a41?w=900&q=80" alt="Reynisfjara 玄武岩洞穴" loading="lazy">
+      </div>
+
+      <div class="restaurant fade">
+        <p class="restaurant-tag">晚餐</p>
+        <p class="restaurant-name">Suður-Vík Restaurant</p>
+        <p class="restaurant-meta">Vík í Mýrdal &middot; 窗邊望海蝕柱</p>
+        <p class="restaurant-note">坐在面向 Reynisdrangar 的窗邊，點一碗冰島傳統羊肉湯 &mdash; 濃郁的高湯裡有根莖蔬菜和慢燉到軟爛的羊肉，配上今日鮮魚。外面是永不落下的太陽和黑色的沙灘。兩個人大約 ISK 10,000&ndash;15,000。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---- DAY 3 ---- -->
+  <section class="day" data-day="3">
+    <div class="day-marker fade">
+      <div class="day-num">3</div>
+      <span class="day-kanji">冰語</span>
+    </div>
+    <div class="day-content">
+      <div class="day-header fade">
+        <h3 class="day-title">冰川低語 &middot; 千鳥飛翔</h3>
+        <p class="day-date">六月二十日 &middot; 星期六</p>
+      </div>
+
+      <div class="time-block fade">
+        <p class="time-label">午前</p>
+        <p class="time-desc">早起去 Dyrhólaey 岬角看海鸚。六月是牠們的築巢季節 &mdash; 成千上萬隻海鸚站在懸崖邊上，橘色的嘴巴叼著小魚，黑白的身體像穿著燕尾服的小紳士。早晨和傍晚牠們最活躍。帶上望遠鏡，找一個安靜的角落坐下來。從 Dyrhólaey 燈塔可以俯瞰整片黑沙海岸和那座天然的石拱門 &mdash; 海浪穿過拱門的畫面，像是大地在對你眨眼。</p>
+      </div>
+
+      <div class="day-image fade" data-d="1">
+        <img src="https://images.unsplash.com/photo-1476468875881-7981a47c4eda?auto=format&fit=crop&w=900&q=80" alt="海鸚在懸崖上" loading="lazy">
+        <span class="day-image-caption">Dyrhólaey &middot; 海鸚的六月</span>
+      </div>
+
+      <div class="time-block fade" data-d="1">
+        <p class="time-label">午後</p>
+        <p class="time-desc">往東開，穿過 Fjaðrárgljúfur 峽谷 &mdash; 一百公尺深、兩公里長的苔蘚峽谷，走在邊緣步道上往下望，蜿蜒的河流像一條綠色的絲帶。然後繼續到 Jökulsárlón 冰河湖。預約一趟橡皮艇巡航（大約 45 分鐘，ISK 12,000/人），在漂浮的冰山之間穿行。有些冰山是白色的，有些是深藍色的 &mdash; 藍色代表那些冰已經被壓縮了幾百年，密度高到只反射藍光。觸碰那些冰的時候，你摸到的是比任何文明都古老的水。</p>
+      </div>
+
+      <div class="day-image fade" data-d="1">
+        <img src="https://images.unsplash.com/photo-1541180413652-36d68a04c873?auto=format&fit=crop&w=900&q=80" alt="Jökulsárlón 冰河湖中的冰山" loading="lazy">
+        <span class="day-image-caption">Jökulsárlón &middot; 冰河湖 &middot; 千年之藍</span>
+      </div>
+
+      <div class="time-block fade" data-d="2">
+        <p class="time-label">永晝 &middot; 深夜</p>
+        <p class="time-desc">晚上十點，去鑽石沙灘。冰河湖的冰塊漂流入海，又被浪沖回黑色的火山沙灘上 &mdash; 大小不一的透明冰塊散落在黑曜石般的沙地上，午夜的低角度陽光穿過每一塊冰，讓它們像巨大的鑽石一樣閃耀。這是冰島最浪漫的永晝場景之一。我們坐在沙灘上，看冰塊慢慢融化、慢慢發光。</p>
+      </div>
+
+      <div class="restaurant fade">
+        <p class="restaurant-tag">晚餐</p>
+        <p class="restaurant-name">Pakkhús Restaurant</p>
+        <p class="restaurant-meta">Höfn 港口 &middot; 冰島龍蝦之都</p>
+        <p class="restaurant-note">Höfn 是冰島的「龍蝦之都」，Pakkhús 是港口邊的老倉庫改建餐廳。點香煎龍蝦尾配蒜味奶油 &mdash; 海螯蝦（langoustine）的甜味和大西洋的鹹味在舌尖融合。建議提前預約，夏季排隊很長。兩個人大約 ISK 18,000&ndash;25,000。</p>
+      </div>
+
+      <!-- Surprise reveal -->
+      <div class="surprise fade" id="surprise">
+        <div class="surprise-trigger" onclick="toggleSurprise()">
+          <span class="surprise-icon">?</span>
+          <span class="surprise-prompt">冰山深處 &mdash; 點這裡</span>
+        </div>
+        <div class="surprise-content">
+          <div class="surprise-inner">
+            <p class="surprise-text">橡皮艇巡航的時候，悄悄問嚮導能不能靠近一座帶藍色紋理的冰山。那種藍色不是顏料，是幾百年的時間被壓進冰裡的顏色。當你伸手觸碰冰面，指尖碰到的水分子可能在維京人踏上這片土地之前就已經結凍了。我想看你觸碰那塊冰的表情 &mdash; 在千年的寂靜面前，我們都是一樣的渺小，而渺小的感覺，兩個人一起感受的時候，反而變成了一種溫柔。這是我在這趟旅程裡最想和你分享的一刻。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---- DAY 4 ---- -->
+  <section class="day" data-day="4">
+    <div class="day-marker fade">
+      <div class="day-num">4</div>
+      <span class="day-kanji">歸途</span>
+    </div>
+    <div class="day-content">
+      <div class="day-header fade">
+        <h3 class="day-title">歸途花徑 &middot; 溫泉絮語</h3>
+        <p class="day-date">六月二十一日 &middot; 星期日 &middot; 夏至</p>
+      </div>
+
+      <div class="time-block fade">
+        <p class="time-label">午前</p>
+        <p class="time-desc">今天是夏至 &mdash; 北半球白晝最長的一天，而在冰島，太陽根本不會落下。早上先繞到 Svínafellsjökull 冰舌，從 Skaftafell 的步道走三十分鐘到冰川觀景點。冰川的裂縫和褶皺近在眼前，藍白交錯的冰面像是被揉皺的天空。然後開始往西折返，沿著南海岸一路看那些我們來時經過但沒有停下的風景。</p>
+      </div>
+
+      <div class="time-block fade" data-d="1">
+        <p class="time-label">午後</p>
+        <p class="time-desc">繞進山裡去找 Seljavallalaug &mdash; 冰島最古老的游泳池之一，建於 1923 年。從公路旁的小路走十五分鐘，穿過溪流和苔蘚，就會看到一座被山谷包圍的露天地熱泳池。沒有售票亭、沒有更衣間、沒有人群 &mdash; 只有溫暖的水、綠色的山壁和你。我們在這裡泡著，看雲在山頂上慢慢移動，什麼話都不用說。</p>
+      </div>
+
+      <div class="time-block fade" data-d="2">
+        <p class="time-label">永晝 &middot; 夏至之夜</p>
+        <p class="time-desc">今晚住在南部鄉間。如果訂到 Hotel Rangá，房間外面有私人露天溫泉浴缸 &mdash; 泡在水裡，望著 Rangá 河和遠方 Hekla 火山的剪影，頭頂上是永遠不暗的天空。夏至的冰島，午夜的陽光有一種特別柔軟的金色，像是整個世界被包在琥珀裡。這是一年中最長的一天，而我想把最長的一天，用來和你一起慢慢度過。</p>
+      </div>
+
+      <div class="restaurant fade">
+        <p class="restaurant-tag">晚餐</p>
+        <p class="restaurant-name">Hotel Rangá Restaurant</p>
+        <p class="restaurant-meta">Suðurlandsvegur &middot; 河畔精緻料理</p>
+        <p class="restaurant-note">冰島食材的極致表達 &mdash; 北極紅點鮭配時令蔬菜，或者慢燉冰島羊排。甜點試試 skyr 慕斯配野生藍莓。河畔的落地窗外是永不落下的夏至陽光。兩個人大約 ISK 20,000&ndash;30,000。這頓飯不急，我們慢慢吃。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---- DAY 5 ---- -->
+  <section class="day" data-day="5">
+    <div class="day-marker fade">
+      <div class="day-num">5</div>
+      <span class="day-kanji">離歌</span>
+    </div>
+    <div class="day-content">
+      <div class="day-header fade">
+        <h3 class="day-title">天空之鏡 &middot; 永晝告別</h3>
+        <p class="day-date">六月二十二日 &middot; 星期一</p>
+      </div>
+
+      <div class="time-block fade">
+        <p class="time-label">午前</p>
+        <p class="time-desc">最後一天，把自己交給 Sky Lagoon。從雷克雅維克開十五分鐘就到 &mdash; 無邊際的地熱溫泉池和北大西洋的海平面融為一體。預約 Sér 約會套餐：私人更衣空間、Smakk Bar 的一杯飲料、Sky Platter 輕食拼盤，還有招牌的「七步儀式」&mdash; 冷水池、暖泉、桑拿、冷霧、蒸氣、天空磨砂、最後回到無邊際池中。在蒸氣和海風之間，把五天的風塵都洗掉。</p>
+      </div>
+
+      <div class="day-image fade" data-d="1">
+        <img src="https://images.unsplash.com/photo-1415226556993-1404e0c6e727?auto=format&fit=crop&w=900&q=80" alt="Blue Lagoon 地熱溫泉" loading="lazy">
+        <span class="day-image-caption">冰島地熱溫泉 &middot; 天與水的邊界</span>
+      </div>
+
+      <div class="time-block fade" data-d="1">
+        <p class="time-label">午後</p>
+        <p class="time-desc">回到雷克雅維克市區散步。沿彩色的 Laugavegur 購物街走到 Skólavörðustígur &mdash; 那條通往 Hallgrímskirkja 教堂的彩虹街。教堂的塔頂可以俯瞰整個城市和遠方的 Esja 山。走到 Harpa 音樂廳，蜂巢般的玻璃帷幕會隨天色變換顏色。這座世界最北的首都，小到可以用一個下午走完，但每一條巷子都藏著驚喜。</p>
+      </div>
+
+      <div class="time-block fade" data-d="2">
+        <p class="time-label">永晝 &middot; 最後一夜</p>
+        <p class="time-desc">最後的晚餐之後，沿著海濱大道 Sæbraut 走到太陽航海者（Sólfar）雕塑。不鏽鋼的維京船骨架在午夜的低角度陽光下閃閃發光，對面是 Esja 山的剪影倒映在海灣裡。然後走五分鐘到舊港口，找到 Valdís 冰淇淋店 &mdash; 點一球甘草口味或大黃口味的冰淇淋，坐在港口邊的牆上。午夜十二點，太陽懸在海平面上方，拒絕落下。這五天，我們看過間歇泉噴發、走過瀑布背後、觸碰過千年的冰、泡過山谷裡的溫泉。而最後一個畫面，是你坐在港口邊，吃著冰淇淋，在永不落下的太陽底下笑。</p>
+      </div>
+
+      <div class="restaurant fade">
+        <p class="restaurant-tag">告別晚餐</p>
+        <p class="restaurant-name">Grillmarkaðurinn (The Grill Market)</p>
+        <p class="restaurant-meta">Lækjargata 2a, Reykjavik &middot; 火山岩與苔蘚的餐廳</p>
+        <p class="restaurant-note">整間餐廳用熔岩石、原木和冰島苔蘚裝飾 &mdash; 像走進一個溫暖的洞穴。點冰島羊排或香煎龍蝦，配一杯冰島精釀。如果想要更極致的告別，去 Dill &mdash; 冰島唯一的米其林星級餐廳，用發酵和野生食材做出的新北歐料理。兩個人 Grillmarkaðurinn 約 ISK 20,000&ndash;30,000，Dill 約 ISK 40,000+。</p>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /timeline -->
+
+
+<!-- ========== PRACTICAL INFO ========== -->
+<section class="practical">
+  <h3 class="practical-title fade">行前須知</h3>
+
+  <div class="practical-image fade">
+    <img src="https://images.unsplash.com/photo-1576000576731-3b99e36d81bc?auto=format&fit=crop&w=900&q=80" alt="冰島環島公路風景" loading="lazy">
+  </div>
+
+  <div class="accordion-item fade" data-d="1">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <span class="accordion-label">Budget &middot; 預算概覽</span>
+      <svg class="accordion-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="accordion-body">
+      <div class="accordion-content">
+        <ul>
+          <li>租車（五日，經濟型 2WD，夏季價）：$550&ndash;800 USD</li>
+          <li>油費（環島約 1,200 公里）：$150&ndash;200 USD</li>
+          <li>住宿（五晚，中高檔）：$1,100&ndash;1,600 USD</li>
+          <li>餐飲（餐廳 + Bónus 超市混搭）：$600&ndash;900 USD</li>
+          <li>體驗（Sky Lagoon 約會套餐、冰河湖橡皮艇等）：$350&ndash;500 USD</li>
+          <li><strong>兩人總計：$2,800&ndash;4,100 USD，機票另計</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item fade" data-d="1">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <span class="accordion-label">Packing &middot; 六月行囊</span>
+      <svg class="accordion-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="accordion-body">
+      <div class="accordion-content">
+        <ul>
+          <li>防水外層夾克 &mdash; 冰島的雨說來就來，即使晴天也要隨身帶著</li>
+          <li>保暖中層（刷毛外套或美麗諾羊毛衣）&mdash; 六月均溫 8&ndash;15&deg;C</li>
+          <li>防水登山靴 &mdash; 有護踝、抓地力好，走瀑布和冰川步道必備</li>
+          <li>速乾長褲 &mdash; 不要穿牛仔褲，濕了又冷又重</li>
+          <li>防風層 &mdash; 海岸和懸崖上的風可以非常猛烈</li>
+          <li>墨鏡 + SPF 30 防曬 &mdash; 24 小時日照意味著連「夜晚」都有紫外線</li>
+          <li>眼罩 &mdash; 必帶；很多住宿沒有遮光窗簾</li>
+          <li>泳衣 &mdash; 地熱溫泉、野溪溫泉、Seljavallalaug 都要用</li>
+          <li>望遠鏡 &mdash; 看海鸚專用</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item fade" data-d="2">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <span class="accordion-label">Driving &middot; 自駕備忘</span>
+      <svg class="accordion-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="accordion-body">
+      <div class="accordion-content">
+        <ul>
+          <li>一號環島公路全程鋪裝，2WD 小車就夠。限速：鋪裝公路 90 km/h，碎石路 80 km/h</li>
+          <li>F 開頭的高地公路依法必須 4WD &mdash; 這趟行程不需要 F 路，但如果臨時想繞進高地，要換車</li>
+          <li>冰島法律規定隨時開大燈，不分日夜</li>
+          <li>南海岸有很多單線橋（einbreiðbrú），靠橋近的車優先通行</li>
+          <li>絕對不要駛離公路 &mdash; 冰島苔蘚要幾十年才能恢復，罰款非常重</li>
+          <li>每個加油站都加滿 &mdash; 南海岸加油站間距可能超過 100 公里</li>
+          <li>開車門時用力抓穩 &mdash; 冰島的風可以直接把車門吹壞，這是最常見的租車保險理賠</li>
+          <li>每天出發前查路況：road.is（Vegagerðin 冰島公路局）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item fade" data-d="2">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <span class="accordion-label">Weather &middot; 六月天氣</span>
+      <svg class="accordion-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="accordion-body">
+      <div class="accordion-content">
+        <ul>
+          <li>均溫 8&ndash;15&deg;C（體感會因風寒效應更低，尤其在海岸和冰川附近）</li>
+          <li>日照：接近 24 小時。太陽在午夜附近沉到海平面邊緣但不會落下（尤其在夏至 6/21 前後）</li>
+          <li>降雨：零星陣雨很正常，隨時帶防水外套。南海岸比雷克雅維克更潮濕</li>
+          <li>風：持續且經常強勁，尤其在 Dyrhólaey、Reynisfjara 和冰川區</li>
+          <li>六月是造訪冰島最好的月份 &mdash; 最溫暖、最乾燥、所有公路開放、海鸚季、永晝</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========== FOOTER ========== -->
+<section class="footer">
+  <p class="footer-msg fade">太陽不願落下的那些夜晚，<br>我們一起看過就好。</p>
+  <button class="cta-btn fade" data-d="1" id="ctaBtn" onclick="handleCta()">
+    <span>Let's Go</span>
+    <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+  </button>
+  <div style="margin-top:48px;text-align:center;" id="reply">
+    <p style="font-size:10.5px;letter-spacing:.4em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:20px;">留一句話給我</p>
+    <textarea id="msgBox" placeholder="想說什麼都好..." style="width:100%;max-width:480px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);color:var(--txt);font-family:'Noto Sans TC',sans-serif;font-size:14px;padding:16px 20px;border-radius:8px;resize:vertical;min-height:80px;letter-spacing:0.05em;line-height:1.8;outline:none;"></textarea>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:20px;">
+      <a href="#" onclick="sendWa(event)" style="display:inline-flex;align-items:center;gap:8px;font-size:10px;letter-spacing:.3em;padding:12px 24px;border-radius:100px;border:1px solid rgba(255,255,255,.1);background:transparent;color:rgba(255,255,255,.45);text-decoration:none;font-family:'Noto Sans TC',sans-serif;min-height:44px;">
+        <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:currentColor;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WHATSAPP
+      </a>
+      <a href="#" onclick="sendEmail(event)" style="display:inline-flex;align-items:center;gap:8px;font-size:10px;letter-spacing:.3em;padding:12px 24px;border-radius:100px;border:1px solid rgba(255,255,255,.1);background:transparent;color:rgba(255,255,255,.45);text-decoration:none;font-family:'Noto Sans TC',sans-serif;min-height:44px;">
+        <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:currentColor;"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        EMAIL
+      </a>
+      <button onclick="sendInline()" style="display:inline-flex;align-items:center;gap:8px;font-size:10px;letter-spacing:.3em;padding:12px 24px;border-radius:100px;border:1px solid rgba(255,255,255,.1);background:transparent;color:rgba(255,255,255,.45);cursor:pointer;font-family:'Noto Sans TC',sans-serif;min-height:44px;">
+        <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:currentColor;"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+        送出
+      </button>
+    </div>
+    <p id="sentMsg" style="display:none;font-size:13px;color:rgba(255,255,255,.4);letter-spacing:0.08em;margin-top:20px;">已收到你的心意</p>
+  </div>
+</section>
+
+<!-- ========== EXPLORE MORE ========== -->
+<section class="explore-more">
+  <p class="explore-more-label fade">繼續探索</p>
+  <div class="explore-pills fade" data-d="1">
+    <a class="explore-pill soon"><span class="explore-pill-dot" style="background:var(--af)"></span>荒原之啟</a>
+    <a class="explore-pill soon"><span class="explore-pill-dot" style="background:var(--nl)"></span>郁金盛筵</a>
+    <a class="explore-pill" href="japan.html" onclick="if(typeof posthog!=='undefined')posthog.capture('navigate_itinerary',{from:'iceland',to:'japan'})"><span class="explore-pill-dot" style="background:var(--jp)"></span>浮生煙華</a>
+    <a class="explore-pill soon"><span class="explore-pill-dot" style="background:var(--kr)"></span>霜林染赤</a>
+    <a class="explore-pill soon"><span class="explore-pill-dot" style="background:var(--jpw)"></span>歲末 · 銀冬</a>
+    <a class="explore-pill soon"><span class="explore-pill-dot" style="background:var(--eu)"></span>歲末 · 古城</a>
+    <a class="explore-pill" href="index.html" onclick="if(typeof posthog!=='undefined')posthog.capture('navigate_itinerary',{from:'iceland',to:'main'})"><span class="explore-pill-dot" style="background:var(--txt)"></span>總覽 · 歲時紀行</a>
+  </div>
+</section>
+
+
+<script>
+// --- Fade-in on scroll ---
+const io = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('go'); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade').forEach(el => io.observe(el));
+
+// --- Hero slow zoom ---
+const hio = new IntersectionObserver(es => {
+  es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('seen'); hio.unobserve(e.target); }
+  });
+}, { threshold: 0.05 });
+document.querySelectorAll('.hero').forEach(el => hio.observe(el));
+
+// --- Scroll-linked day counter ---
+const daySections = document.querySelectorAll('.day[data-day]');
+const dayCounter = document.getElementById('dayCounter');
+const dayCounterN = document.getElementById('dayCounterN');
+const dayDots = document.querySelectorAll('.day-counter-dot');
+
+const dayObserver = new IntersectionObserver(entries => {
+  let maxRatio = 0;
+  let currentDay = null;
+  entries.forEach(entry => {
+    if (entry.intersectionRatio > maxRatio) {
+      maxRatio = entry.intersectionRatio;
+      currentDay = entry.target.dataset.day;
+    }
+  });
+  if (currentDay) {
+    dayCounterN.textContent = currentDay;
+    dayDots.forEach(dot => {
+      dot.classList.toggle('active', dot.dataset.day === currentDay);
+    });
+  }
+}, { threshold: [0, 0.1, 0.2, 0.3, 0.5] });
+
+daySections.forEach(s => dayObserver.observe(s));
+
+// Show/hide counter based on timeline visibility
+const timelineEl = document.querySelector('.timeline');
+const counterVisObs = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    dayCounter.classList.toggle('visible', entry.isIntersecting);
+  });
+}, { threshold: 0 });
+counterVisObs.observe(timelineEl);
+
+// --- Surprise reveal ---
+function toggleSurprise() {
+  const el = document.getElementById('surprise');
+  el.classList.toggle('open');
+  if (typeof posthog !== 'undefined' && el.classList.contains('open')) {
+    posthog.capture('surprise_revealed', { day: 3, page: 'iceland_midnight_sun' });
+  }
+}
+
+// --- Accordion ---
+function toggleAccordion(header) {
+  const item = header.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// --- CTA Button ---
+function handleCta() {
+  const btn = document.getElementById('ctaBtn');
+  btn.classList.add('launched');
+
+  if (typeof posthog !== 'undefined') {
+    posthog.capture('lets_go_clicked', { destination: 'iceland_midnight_sun' });
+  }
+
+  setTimeout(() => btn.classList.remove('launched'), 1200);
+}
+
+// Response functions
+function getMsg() { return document.getElementById('msgBox').value.trim(); }
+function sendWa(e) {
+  e.preventDefault();
+  const msg = getMsg();
+  let text = '子夜孤陽 · 冰島永晝紀行\n';
+  if (msg) text += '留言：' + msg;
+  if (typeof posthog !== 'undefined') posthog.capture('response_sent', { method: 'whatsapp', message: msg, page: 'iceland' });
+  window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
+}
+function sendEmail(e) {
+  e.preventDefault();
+  const msg = getMsg();
+  if (typeof posthog !== 'undefined') posthog.capture('response_sent', { method: 'email', message: msg, page: 'iceland' });
+  window.location.href = 'mailto:?subject=' + encodeURIComponent('子夜孤陽 · 冰島永晝紀行') + '&body=' + encodeURIComponent(msg);
+}
+function sendInline() {
+  const msg = getMsg();
+  if (typeof posthog !== 'undefined') posthog.capture('response_sent', { method: 'inline', message: msg, page: 'iceland' });
+  document.getElementById('sentMsg').style.display = 'block';
+  document.getElementById('msgBox').value = '';
+  document.getElementById('msgBox').placeholder = '已送出';
+}
+
+// Overlay menu
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') document.getElementById('overlayMenu').classList.remove('open');
+});
+document.getElementById('overlayMenu').addEventListener('click', function(e) {
+  if (e.target === this) this.classList.remove('open');
+});
+</script>
+
+</body>
+</html>
