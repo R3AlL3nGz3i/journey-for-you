@@ -48,6 +48,7 @@ nav {
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(255,255,255,.03);
 }
+.nav-left { flex: 1; }
 .nav-logo {
   font-family: 'Noto Serif TC', serif;
   font-size: 0.95rem;
@@ -55,8 +56,9 @@ nav {
   letter-spacing: .2em;
   text-decoration: none;
   color: var(--txt);
+  flex-shrink: 0;
 }
-.nav-right { display: flex; align-items: center; gap: 16px; }
+.nav-right { flex: 1; display: flex; align-items: center; justify-content: flex-end; gap: 16px; }
 
 /* ─── HAMBURGER ─── */
 .hamburger {
@@ -567,7 +569,8 @@ a.yg-item:hover { background: rgba(255,255,255,.06); }
 
 <!-- ── NAV ── -->
 <nav>
-  <a href="index.html" class="nav-logo">歲時紀行</a>
+  <div class="nav-left"></div>
+  <a href="#top" class="nav-logo">歲時紀行</a>
   <div class="nav-right">
     <button class="hamburger" onclick="document.getElementById('overlayMenu').classList.add('open')" aria-label="Menu">
       <svg viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>

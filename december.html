@@ -68,6 +68,7 @@ nav {
   letter-spacing: .2em;
   text-decoration: none;
   color: var(--txt);
+  flex-shrink: 0;
 }
 .nav-wa {
   display: flex; align-items: center; gap: 6px;
@@ -77,6 +78,7 @@ nav {
 .nav-wa:hover { color: var(--txt); }
 .nav-wa svg { width: 14px; height: 14px; fill: currentColor; }
 .nav-back {
+  flex: 1;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -89,7 +91,7 @@ nav {
 }
 .nav-back:hover { color: var(--txt); }
 .nav-back svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 1.5; }
-.nav-right { display: flex; align-items: center; gap: 16px; }
+.nav-right { flex: 1; display: flex; align-items: center; justify-content: flex-end; gap: 16px; }
 
 /* --- HAMBURGER --- */
 .hamburger {
