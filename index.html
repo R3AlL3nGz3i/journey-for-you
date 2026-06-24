@@ -287,22 +287,23 @@ a.yg-item:hover { background: rgba(255,255,255,.06); }
   pointer-events: none; z-index: 1;
 }
 .block .stat-n { filter: saturate(0.8) brightness(0.75); }
-.block .stat-lead { color: rgba(26,26,26,.82); font-weight: 400; }
-.block .chip { border-color: rgba(26,26,26,.18); color: rgba(26,26,26,.65); }
+.block .stat-lead { color: rgba(26,26,26,.85); font-weight: 400; }
+.block .chip { border-color: rgba(26,26,26,.2); color: rgba(26,26,26,.7); }
 .block .card-veil { background: linear-gradient(to top, rgba(0,0,0,.9) 0%, rgba(0,0,0,.4) 40%, rgba(0,0,0,.05) 70%, transparent 100%); }
-.block .card-desc { color: rgba(255,255,255,.72); }
-.block .card-where { color: rgba(255,255,255,.5); }
+.block .card-desc { color: rgba(255,255,255,.8); }
+.block .card-where { color: rgba(255,255,255,.6); }
 .block .timing { border-color: rgba(26,26,26,.12); background: rgba(26,26,26,.04); }
-.block .timing-lbl { color: rgba(26,26,26,.5); }
-.block .timing-note { color: rgba(26,26,26,.5); }
-.block .vid-label { color: rgba(26,26,26,.4); }
+.block .timing-lbl { color: rgba(26,26,26,.65); }
+.block .timing-val { color: #1A1A1A; }
+.block .timing-note { color: rgba(26,26,26,.65); }
+.block .vid-label { color: rgba(26,26,26,.7); }
 .block .vid-wrap { border-color: rgba(26,26,26,.06); }
-.block .explore-link { color: rgba(26,26,26,.4); border-color: rgba(26,26,26,.1); }
-.block .explore-link:hover { color: #1A1A1A; border-color: rgba(26,26,26,.3); }
-.block .explore-link.live { color: rgba(26,26,26,.6); border-color: rgba(26,26,26,.15); }
+.block .explore-link { color: rgba(26,26,26,.6); border-color: rgba(26,26,26,.15); }
+.block .explore-link:hover { color: #1A1A1A; border-color: rgba(26,26,26,.4); }
+.block .explore-link.live { color: rgba(26,26,26,.75); border-color: rgba(26,26,26,.2); }
 .block .stat { border-bottom-color: rgba(26,26,26,.08); }
-.block .vid-link { color: rgba(26,26,26,.4); border-bottom-color: rgba(26,26,26,.1); }
-.block .vid-link:hover { color: #1A1A1A; border-bottom-color: rgba(26,26,26,.3); }
+.block .vid-link { color: rgba(26,26,26,.6); border-bottom-color: rgba(26,26,26,.15); }
+.block .vid-link:hover { color: #1A1A1A; border-bottom-color: rgba(26,26,26,.4); }
 
 /* ─── STAT ─── */
 .stat {
@@ -358,16 +359,16 @@ a.yg-item:hover { background: rgba(255,255,255,.06); }
   position: absolute; inset: 0;
   background: linear-gradient(to top, rgba(0,0,0,.9) 0%, rgba(0,0,0,.4) 40%, rgba(0,0,0,.05) 70%, transparent 100%);
 }
-.card-body { position: absolute; bottom: 0; inset-inline: 0; padding: clamp(20px,4vw,28px); }
-.card-where { font-size: 9px; letter-spacing: .3em; text-transform: uppercase; opacity: .5; margin-bottom: 8px; }
+.card-body { position: absolute; bottom: 0; inset-inline: 0; background: linear-gradient(to top, rgba(0,0,0,.85) 0%, rgba(0,0,0,.6) 60%, rgba(0,0,0,.3) 85%, transparent 100%); padding: clamp(20px,4vw,28px); padding-top: 60px; }
+.card-where { font-size: 9px; letter-spacing: .3em; text-transform: uppercase; opacity: .6; margin-bottom: 8px; }
 .card-title {
   font-family: 'Noto Serif TC', serif;
   font-size: clamp(.95rem, 1.8vw, 1.15rem);
-  font-weight: 700; letter-spacing: 0.05em; line-height: 1.4; margin-bottom: 12px;
+  font-weight: 700; letter-spacing: 0.05em; line-height: 1.4; margin-bottom: 12px; color: #fff;
 }
 .card-desc {
   font-size: clamp(.76rem, 1.4vw, .84rem);
-  line-height: 1.9; color: rgba(255,255,255,.72);
+  line-height: 1.9; color: rgba(255,255,255,.8);
   text-align: justify;
 }
 
