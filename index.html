@@ -289,7 +289,6 @@ a.yg-item:hover { background: rgba(255,255,255,.06); }
 .block .stat-n { filter: saturate(0.8) brightness(0.75); }
 .block .stat-lead { color: rgba(26,26,26,.85); font-weight: 400; }
 .block .chip { border-color: rgba(26,26,26,.2); color: rgba(26,26,26,.7); }
-.block .card-veil { background: linear-gradient(to top, rgba(0,0,0,.9) 0%, rgba(0,0,0,.4) 40%, rgba(0,0,0,.05) 70%, transparent 100%); }
 .block .card-desc { color: rgba(255,255,255,.8); }
 .block .card-where { color: rgba(255,255,255,.6); }
 .block .timing { border-color: rgba(26,26,26,.12); background: rgba(26,26,26,.04); }
@@ -313,14 +312,24 @@ a.yg-item:hover { background: rgba(255,255,255,.06); }
   margin-bottom: 60px;
   padding-bottom: 52px;
   border-bottom: 1px solid rgba(255,255,255,.04);
+  overflow: hidden;
 }
 @media (max-width: 768px) { .stat { flex-direction: column; gap: 16px; } }
+@media (max-width: 480px) {
+  .stat-n {
+    font-size: clamp(2rem, 12vw, 3.5rem);
+  }
+  .stat {
+    gap: 16px;
+  }
+}
 .stat-n {
   font-family: 'Playfair Display', serif;
   font-weight: 900;
-  font-size: clamp(3.5rem, 10vw, 7.5rem);
+  font-size: clamp(2.5rem, 8vw, 7.5rem);
   line-height: 0.9;
   flex-shrink: 0;
+  word-break: break-all;
 }
 .stat-copy { padding-top: 8px; }
 .stat-lead {
@@ -355,11 +364,17 @@ a.yg-item:hover { background: rgba(255,255,255,.06); }
   transition: transform .9s cubic-bezier(.16,1,.3,1);
 }
 .card:hover .card-bg { transform: scale(1.06); }
-.card-veil {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,.9) 0%, rgba(0,0,0,.4) 40%, rgba(0,0,0,.05) 70%, transparent 100%);
+.card-body {
+  position: absolute; bottom: 0; inset-inline: 0;
+  padding: clamp(20px,4vw,28px);
+  padding-top: 80px;
+  background: linear-gradient(to top,
+    rgba(0,0,0,.92) 0%,
+    rgba(0,0,0,.82) 30%,
+    rgba(0,0,0,.55) 65%,
+    rgba(0,0,0,.2) 85%,
+    transparent 100%);
 }
-.card-body { position: absolute; bottom: 0; inset-inline: 0; background: linear-gradient(to top, rgba(0,0,0,.85) 0%, rgba(0,0,0,.6) 60%, rgba(0,0,0,.3) 85%, transparent 100%); padding: clamp(20px,4vw,28px); padding-top: 60px; }
 .card-where { font-size: 9px; letter-spacing: .3em; text-transform: uppercase; opacity: .6; margin-bottom: 8px; }
 .card-title {
   font-family: 'Noto Serif TC', serif;
@@ -744,8 +759,7 @@ a.yg-item:hover { background: rgba(255,255,255,.06); }
   <div class="cards fade" data-d="1">
     <div class="card">
       <div class="card-bg" style="background-color:#2A1000;background-image:url('https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=900&q=80');"></div>
-      <div class="card-veil"></div>
-      <div class="card-body">
+            <div class="card-body">
         <p class="card-where">坦尚尼亞 · 塞倫蓋蒂</p>
         <p class="card-title">初生季</p>
         <p class="card-desc">一月的草原上，數千生靈在晨霧中墜地，四肢尚顫便要學會奔跑。掠食者深諳此道——這是全年生命演繹最為激烈、最為頻密的時節。</p>
@@ -753,8 +767,7 @@ a.yg-item:hover { background: rgba(255,255,255,.06); }
     </div>
     <div class="card">
       <div class="card-bg" style="background-color:#1C0B00;background-image:url('https://images.unsplash.com/photo-1464388334095-4e05c18297cd?auto=format&fit=crop&w=900&q=80');"></div>
-      <div class="card-veil"></div>
-      <div class="card-body">
+            <div class="card-body">
         <p class="card-where">塞倫蓋蒂 · 破曉</p>
         <p class="card-title">雲端俯瞰</p>
         <p class="card-desc">夜色未央時隨風啟程，當第一縷曦光劃破天際，無垠的東非大草原在腳下如古老畫卷般鋪展。這裡沒有城市的喧囂，只有天地初開般的原始與浩瀚。</p>
@@ -762,8 +775,7 @@ a.yg-item:hover { background: rgba(255,255,255,.06); }
     </div>
     <div class="card">
       <div class="card-bg" style="background-color:#020315;background-image:url('https://images.unsplash.com/photo-1528818955841-a7f1425131b5?auto=format&fit=crop&w=900&q=80');background-position:center 30%;"></div>
-      <div class="card-veil"></div>
-      <div class="card-body">
+            <div class="card-body">
         <p class="card-where">東非草原 · 夜闌</p>
         <p class="card-title">寂滅之光</p>
         <p class="card-desc">當大地完全隱入純粹的黑暗，塵世的所有雜音隨之熄滅。仰望蒼穹，璀璨星河如瀑布般傾瀉而下，唯有遠處曠野傳來的隱隱獸鳴，襯托著夜的深邃。</p>
@@ -827,8 +839,7 @@ a.yg-item:hover { background: rgba(255,255,255,.06); }
   <div class="cards fade" data-d="1">
     <div class="card">
       <div class="card-bg" style="background-color:#0A1A00;background-image:url('https://images.unsplash.com/photo-1774645456173-0fc2588ccfc3?auto=format&fit=crop&w=900&q=80');"></div>
-      <div class="card-veil"></div>
-      <div class="card-body">
+            <div class="card-body">
         <p class="card-where">Lisse · 庫肯霍夫</p>
         <p class="card-title">大地油彩</p>
         <p class="card-desc">這裡的色彩並非漸層，而是一畦一畦橫亙鋪展的——赤、金、紫，界線分明如大師揮就的油畫。步入其間便被四面花浪圍攏，冷冽的空氣裡浮動著若有似無的清香。</p>
@@ -836,8 +847,7 @@ a.yg-item:hover { background: rgba(255,255,255,.06); }
     </div>
     <div class="card">
       <div class="card-bg" style="background-color:#080E1A;background-image:url('https://images.unsplash.com/photo-1534351590666-13e3e96b5017?auto=format&fit=crop&w=900&q=80');"></div>
-      <div class="card-veil"></div>
-      <div class="card-body">
+            <div class="card-body">
         <p class="card-where">Amsterdam · 阿姆斯特丹</p>
         <p class="card-title">水色春光</p>
         <p class="card-desc">春日的水位漸漸豐盈，兩岸新萌的嫩葉在逆光中近乎透明。單車的清脆鈴聲從四面八方飄來，比腳步聲更密，比春風更輕。</p>
@@ -845,8 +855,7 @@ a.yg-item:hover { background: rgba(255,255,255,.06); }
     </div>
     <div class="card">
       <div class="card-bg" style="background-color:#0A1200;background-image:url('https://images.unsplash.com/photo-1569842231034-553c0535f691?auto=format&fit=crop&w=900&q=80');"></div>
-      <div class="card-veil"></div>
-      <div class="card-body">
+            <div class="card-body">
         <p class="card-where">Kinderdijk · 小孩堤防</p>
         <p class="card-title">時光的輪迴</p>
         <p class="card-desc">巨大的葉片緩緩轉動，古老的機械聲從木質結構深處傳出。運河邊的露天座位上，春風雖仍帶著一絲涼意，但當陽光直直落在臉上時，靈魂是暖的。</p>
@@ -907,8 +916,7 @@ a.yg-item:hover { background: rgba(255,255,255,.06); }
   <div class="cards fade" data-d="1">
     <div class="card">
       <div class="card-bg" style="background-color:#030A15;background-image:url('https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format&fit=crop&w=900&q=80');"></div>
-      <div class="card-veil"></div>
-      <div class="card-body">
+            <div class="card-body">
         <p class="card-where">Geysir · 間歇泉</p>
         <p class="card-title">大地的低吟</p>
         <p class="card-desc">噴發前夕，地底傳來沉悶的低鳴，繼而一堵滾燙的水柱直衝三十公尺的蒼穹。冷冽的空氣裡夾帶一絲硫磺的氣息，越靠近泉源，越能感受到地心的脈搏。</p>
@@ -916,8 +924,7 @@ a.yg-item:hover { background: rgba(255,255,255,.06); }
     </div>
     <div class="card">
       <div class="card-bg" style="background-color:#020810;background-image:url('https://images.unsplash.com/photo-1504893524553-b855bce32c67?auto=format&fit=crop&w=900&q=80');"></div>
-      <div class="card-veil"></div>
-      <div class="card-body">
+            <div class="card-body">
         <p class="card-where">南部海岸</p>
         <p class="card-title">模糊的界線</p>
         <p class="card-desc">天色始終沒有真正暗下，只是化作一片溫柔的橘黃餘韻，在地平線上靜止。當時針指向凌晨十二點，光線模糊了晝與夜的宿命。</p>
@@ -925,8 +932,7 @@ a.yg-item:hover { background: rgba(255,255,255,.06); }
     </div>
     <div class="card">
       <div class="card-bg" style="background-color:#050A05;background-image:url('https://images.unsplash.com/photo-1569579933032-9e16447c50e3?auto=format&fit=crop&w=900&q=80');"></div>
-      <div class="card-veil"></div>
-      <div class="card-body">
+            <div class="card-body">
         <p class="card-where">黑沙灘懸崖</p>
         <p class="card-title">孤獨的居民</p>
         <p class="card-desc">海鸚佇立在危崖之巔靜靜凝視著來客，不曾驚飛。那眼神彷彿在說，奇怪的是人類。熔岩原野上的古老苔蘚踩下去綿軟無聲，帶著時光的彈性。</p>
@@ -988,8 +994,7 @@ a.yg-item:hover { background: rgba(255,255,255,.06); }
   <div class="cards fade" data-d="1">
     <div class="card">
       <div class="card-bg" style="background-color:#180008;background-image:url('https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?auto=format&fit=crop&w=900&q=80');"></div>
-      <div class="card-veil"></div>
-      <div class="card-body">
+            <div class="card-body">
         <p class="card-where">東京 · 隅田川</p>
         <p class="card-title">三大花火之夜</p>
         <p class="card-desc">午後三時，藍色的防水布已鋪滿河岸。第一發花火綻裂的巨響，往往先震進胸腔，而後才傳入耳畔。河堤坐無虛席，萬千仰望的身影皆被染上流光。</p>
@@ -997,8 +1002,7 @@ a.yg-item:hover { background: rgba(255,255,255,.06); }
     </div>
     <div class="card">
       <div class="card-bg" style="background-color:#100020;background-image:url('https://images.unsplash.com/photo-1509023464722-18d996393ca8?auto=format&fit=crop&w=900&q=80');"></div>
-      <div class="card-veil"></div>
-      <div class="card-body">
+            <div class="card-body">
         <p class="card-where">山梨 · 河口湖</p>
         <p class="card-title">雙生富士</p>
         <p class="card-desc">沉靜的富士山倒映於如鏡湖面，花火在天際與水中同時幻化。煙霧散盡後，碎裂的光點輕落，揉碎了一湖流離的夢境。</p>
@@ -1006,8 +1010,7 @@ a.yg-item:hover { background: rgba(255,255,255,.06); }
     </div>
     <div class="card">
       <div class="card-bg" style="background-color:#180A00;background-image:url('https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=900&q=80');"></div>
-      <div class="card-veil"></div>
-      <div class="card-body">
+            <div class="card-body">
         <p class="card-where">全日本 · 盛夏</p>
         <p class="card-title">夏祭與儀式</p>
         <p class="card-desc">身著素雅浴衣、淺嚐溫熱的章魚燒，穿行於市井人潮。尋一處空地席地而坐，整個夏天，日本的某一處角落都在上演這場關於光的短暫儀式。</p>
@@ -1071,8 +1074,7 @@ a.yg-item:hover { background: rgba(255,255,255,.06); }
   <div class="cards fade" data-d="1">
     <div class="card">
       <div class="card-bg" style="background-color:#0A0520;background-image:url('https://images.unsplash.com/photo-1507783548227-544c3b8fc065?auto=format&fit=crop&w=900&q=80');"></div>
-      <div class="card-veil"></div>
-      <div class="card-body">
+            <div class="card-body">
         <p class="card-where">江原道 · 雪嶽山</p>
         <p class="card-title">山徑晚秋</p>
         <p class="card-desc">十月的山路遊人如織，然而樹冠極高，篩落的光斑是碎的、靜的。楓與銀杏依偎而生，赤金相擁，其間偶爾夾雜一株不肯退場的蒼翠。</p>
@@ -1080,8 +1082,7 @@ a.yg-item:hover { background: rgba(255,255,255,.06); }
     </div>
     <div class="card">
       <div class="card-bg" style="background-color:#080415;background-image:url('https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&w=900&q=80');"></div>
-      <div class="card-veil"></div>
-      <div class="card-body">
+            <div class="card-body">
         <p class="card-where">首爾 · 夜闌</p>
         <p class="card-title">雙面之城</p>
         <p class="card-desc">入夜後，街邊的包車馬車次第亮起溫暖的燈火。油炸的酥香、辣醬的煙火氣與啤酒開蓋的脆響交織。白晝的首爾與入夜後的首爾，從來不是同一座城市。</p>
@@ -1089,8 +1090,7 @@ a.yg-item:hover { background: rgba(255,255,255,.06); }
     </div>
     <div class="card">
       <div class="card-bg" style="background-color:#100510;background-image:url('https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&w=900&q=80');"></div>
-      <div class="card-veil"></div>
-      <div class="card-body">
+            <div class="card-body">
         <p class="card-where">首爾 · 街角</p>
         <p class="card-title">Chimaek</p>
         <p class="card-desc">炸雞佐生啤，塑膠椅上的深夜食堂。這裡溢滿了霓虹燈火與微醺的人聲，韓文甚至為此造了專屬的詞——Chimaek，無需理由，這就是放縱的日常。</p>
