@@ -238,10 +238,10 @@ a.yg-item:hover { background: rgba(255,255,255,.06); }
   text-shadow: 0 2px 20px rgba(0,0,0,.6), 0 1px 4px rgba(0,0,0,.4);
 }
 .hero-idx {
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: .4em;
   text-transform: uppercase;
-  color: rgba(255,255,255,.4);
+  color: rgba(255,255,255,.55);
   margin-bottom: 20px;
   text-shadow: 0 1px 8px rgba(0,0,0,.5);
 }
@@ -258,27 +258,41 @@ a.yg-item:hover { background: rgba(255,255,255,.06); }
   font-weight: 700;
 }
 .hero-loc {
-  font-size: 10.5px;
+  font-size: 11px;
   letter-spacing: .4em;
   text-transform: uppercase;
-  color: rgba(255,255,255,.50);
+  color: rgba(255,255,255,.6);
   text-shadow: 0 1px 8px rgba(0,0,0,.5);
 }
 
 /* ─── BLOCK ─── */
 .block {
+  position: relative;
   padding: clamp(60px, 10vw, 100px) var(--pad);
   background: #F5F2ED;
   color: #1A1A1A;
 }
-.block .stat-lead { color: rgba(26,26,26,.75); }
-.block .chip { border-color: rgba(26,26,26,.12); color: rgba(26,26,26,.5); }
+.block::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, #0C0B10, #F5F2ED);
+  pointer-events: none; z-index: 1;
+}
+.block::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 80px;
+  background: linear-gradient(to top, #0C0B10, #F5F2ED);
+  pointer-events: none; z-index: 1;
+}
+.block .stat-n { filter: saturate(0.8) brightness(0.75); }
+.block .stat-lead { color: rgba(26,26,26,.82); font-weight: 400; }
+.block .chip { border-color: rgba(26,26,26,.18); color: rgba(26,26,26,.65); }
 .block .card-veil { background: linear-gradient(to top, rgba(0,0,0,.9) 0%, rgba(0,0,0,.4) 40%, rgba(0,0,0,.05) 70%, transparent 100%); }
 .block .card-desc { color: rgba(255,255,255,.72); }
 .block .card-where { color: rgba(255,255,255,.5); }
-.block .timing { border-color: rgba(26,26,26,.08); background: rgba(26,26,26,.03); }
-.block .timing-lbl { color: rgba(26,26,26,.4); }
-.block .timing-note { color: rgba(26,26,26,.4); }
+.block .timing { border-color: rgba(26,26,26,.12); background: rgba(26,26,26,.04); }
+.block .timing-lbl { color: rgba(26,26,26,.5); }
+.block .timing-note { color: rgba(26,26,26,.5); }
 .block .vid-label { color: rgba(26,26,26,.4); }
 .block .vid-wrap { border-color: rgba(26,26,26,.06); }
 .block .explore-link { color: rgba(26,26,26,.4); border-color: rgba(26,26,26,.1); }
@@ -437,6 +451,7 @@ a.yg-item:hover { background: rgba(255,255,255,.06); }
 }
 .dec-btn:hover { border-color: rgba(255,255,255,.5); color: var(--txt); background: rgba(255,255,255,.02); }
 .dec-panel.chosen .dec-btn { border-color: #fff; color: #fff; background: rgba(255,255,255,.08); }
+.dec-panel.chosen .dec-btn::after { content: ' \2713'; }
 
 /* ─── CLOSING ─── */
 .closing {
@@ -496,8 +511,12 @@ a.yg-item:hover { background: rgba(255,255,255,.06); }
 
 /* ─── CLOSING PICKS ─── */
 .closing-picks {
-  display: flex; flex-direction: column; align-items: center;
-  gap: 12px; margin-top: 44px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 44px;
 }
 .closing-picks-label {
   font-size: 10.5px; letter-spacing: .4em; text-transform: uppercase;
@@ -586,6 +605,15 @@ a.yg-item:hover { background: rgba(255,255,255,.06); }
   .tab     { padding-left: max(var(--pad), env(safe-area-inset-left)); padding-right: max(var(--pad), env(safe-area-inset-right)); }
   .hero-txt{ padding-left: max(var(--pad), env(safe-area-inset-left)); }
   .block   { padding-left: max(var(--pad), env(safe-area-inset-left)); padding-right: max(var(--pad), env(safe-area-inset-right)); }
+}
+
+/* ─── MOBILE FONT FLOOR ─── */
+@media (max-width: 768px) {
+  .tab-n, .tab-word, .hero-idx, .sc-txt, .card-where,
+  .timing-lbl, .vid-label, .yg-num, .yg-sub, .chip,
+  .dec-opt, .dec-sub, .closing-picks-label, .response-label {
+    font-size: 11px;
+  }
 }
 
 </style>
