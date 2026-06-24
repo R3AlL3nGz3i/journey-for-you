@@ -225,8 +225,8 @@ a.yg-item:hover { background: rgba(255,255,255,.06); }
 .hero-veil {
   position: absolute; inset: 0;
   background:
-    linear-gradient(to top, rgba(8,8,8,.85) 0%, rgba(8,8,8,.4) 25%, rgba(8,8,8,.08) 55%, transparent 100%),
-    linear-gradient(to right, rgba(8,8,8,.2) 0%, transparent 60%);
+    linear-gradient(to top, rgba(8,8,8,.92) 0%, rgba(8,8,8,.6) 20%, rgba(8,8,8,.15) 50%, transparent 100%),
+    linear-gradient(to right, rgba(8,8,8,.25) 0%, transparent 50%);
 }
 .hero-txt {
   position: relative; z-index: 1;
@@ -235,6 +235,7 @@ a.yg-item:hover { background: rgba(255,255,255,.06); }
   border-left: 2px solid rgba(255,255,255,0.05); /* 增加側邊結構線，穩定排版對齊感 */
   margin-left: -2px;
   padding-left: calc(var(--pad) + 12px);
+  text-shadow: 0 2px 20px rgba(0,0,0,.6), 0 1px 4px rgba(0,0,0,.4);
 }
 .hero-idx {
   font-size: 10px;
@@ -242,6 +243,7 @@ a.yg-item:hover { background: rgba(255,255,255,.06); }
   text-transform: uppercase;
   color: rgba(255,255,255,.4);
   margin-bottom: 20px;
+  text-shadow: 0 1px 8px rgba(0,0,0,.5);
 }
 .hero-h {
   font-family: 'Noto Serif TC', serif;
@@ -250,6 +252,7 @@ a.yg-item:hover { background: rgba(255,255,255,.06); }
   line-height: 1.4;
   letter-spacing: 0.05em;
   margin-bottom: 20px;
+  text-shadow: 0 2px 30px rgba(0,0,0,.7), 0 1px 6px rgba(0,0,0,.5);
 }
 .hero-h span {
   font-weight: 700;
@@ -259,6 +262,7 @@ a.yg-item:hover { background: rgba(255,255,255,.06); }
   letter-spacing: .4em;
   text-transform: uppercase;
   color: rgba(255,255,255,.50);
+  text-shadow: 0 1px 8px rgba(0,0,0,.5);
 }
 
 /* ─── BLOCK ─── */
@@ -269,7 +273,7 @@ a.yg-item:hover { background: rgba(255,255,255,.06); }
 }
 .block .stat-lead { color: rgba(26,26,26,.75); }
 .block .chip { border-color: rgba(26,26,26,.12); color: rgba(26,26,26,.5); }
-.block .card-veil { background: linear-gradient(to top, rgba(0,0,0,.8) 0%, rgba(0,0,0,.12) 55%, transparent 100%); }
+.block .card-veil { background: linear-gradient(to top, rgba(0,0,0,.9) 0%, rgba(0,0,0,.4) 40%, rgba(0,0,0,.05) 70%, transparent 100%); }
 .block .card-desc { color: rgba(255,255,255,.72); }
 .block .card-where { color: rgba(255,255,255,.5); }
 .block .timing { border-color: rgba(26,26,26,.08); background: rgba(26,26,26,.03); }
@@ -336,7 +340,7 @@ a.yg-item:hover { background: rgba(255,255,255,.06); }
 .card:hover .card-bg { transform: scale(1.06); }
 .card-veil {
   position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,.82) 0%, rgba(0,0,0,.15) 55%, transparent 100%);
+  background: linear-gradient(to top, rgba(0,0,0,.9) 0%, rgba(0,0,0,.4) 40%, rgba(0,0,0,.05) 70%, transparent 100%);
 }
 .card-body { position: absolute; bottom: 0; inset-inline: 0; padding: clamp(20px,4vw,28px); }
 .card-where { font-size: 9px; letter-spacing: .3em; text-transform: uppercase; opacity: .5; margin-bottom: 8px; }
