@@ -225,25 +225,29 @@ a.yg-item:hover { background: rgba(255,255,255,.06); }
 .hero-veil {
   position: absolute; inset: 0;
   background:
-    linear-gradient(to top, rgba(8,8,8,.92) 0%, rgba(8,8,8,.6) 20%, rgba(8,8,8,.15) 50%, transparent 100%),
-    linear-gradient(to right, rgba(8,8,8,.25) 0%, transparent 50%);
+    linear-gradient(to top, rgba(8,8,8,.7) 0%, rgba(8,8,8,.35) 18%, rgba(8,8,8,.08) 45%, transparent 100%),
+    linear-gradient(to right, rgba(8,8,8,.15) 0%, transparent 40%);
 }
 .hero-txt {
   position: relative; z-index: 1;
   padding: 0 var(--pad) clamp(64px, 10vw, 100px);
   max-width: 920px;
-  border-left: 2px solid rgba(255,255,255,0.05); /* 增加側邊結構線，穩定排版對齊感 */
-  margin-left: -2px;
+  /* Editorial caption panel — left-anchored with feathered right edge */
+  background: linear-gradient(to right, rgba(8,8,8,.72) 0%, rgba(8,8,8,.55) 55%, rgba(8,8,8,.2) 85%, transparent 100%);
+  border-left: 2px solid rgba(255,255,255,0.12);
+  margin-left: 0;
   padding-left: calc(var(--pad) + 12px);
-  text-shadow: 0 2px 20px rgba(0,0,0,.6), 0 1px 4px rgba(0,0,0,.4);
+  padding-top: 32px;
+  padding-bottom: 36px;
+  margin-bottom: clamp(28px, 6vw, 64px);
+  text-shadow: 0 1px 6px rgba(0,0,0,.3);
 }
 .hero-idx {
   font-size: 11px;
   letter-spacing: .4em;
   text-transform: uppercase;
-  color: rgba(255,255,255,.55);
+  color: rgba(255,255,255,.6);
   margin-bottom: 20px;
-  text-shadow: 0 1px 8px rgba(0,0,0,.5);
 }
 .hero-h {
   font-family: 'Noto Serif TC', serif;
@@ -252,7 +256,6 @@ a.yg-item:hover { background: rgba(255,255,255,.06); }
   line-height: 1.4;
   letter-spacing: 0.05em;
   margin-bottom: 20px;
-  text-shadow: 0 2px 30px rgba(0,0,0,.7), 0 1px 6px rgba(0,0,0,.5);
 }
 .hero-h span {
   font-weight: 700;
@@ -261,8 +264,7 @@ a.yg-item:hover { background: rgba(255,255,255,.06); }
   font-size: 11px;
   letter-spacing: .4em;
   text-transform: uppercase;
-  color: rgba(255,255,255,.6);
-  text-shadow: 0 1px 8px rgba(0,0,0,.5);
+  color: rgba(255,255,255,.65);
 }
 
 /* ─── BLOCK ─── */
@@ -603,7 +605,7 @@ a.yg-item:hover { background: rgba(255,255,255,.06); }
   nav      { padding-left: max(var(--pad), env(safe-area-inset-left)); padding-right: max(var(--pad), env(safe-area-inset-right)); }
   .cover   { padding-left: max(var(--pad), env(safe-area-inset-left)); padding-right: max(var(--pad), env(safe-area-inset-right)); }
   .tab     { padding-left: max(var(--pad), env(safe-area-inset-left)); padding-right: max(var(--pad), env(safe-area-inset-right)); }
-  .hero-txt{ padding-left: max(var(--pad), env(safe-area-inset-left)); }
+  .hero-txt{ padding-left: max(calc(var(--pad) + 12px), calc(env(safe-area-inset-left) + 12px)); }
   .block   { padding-left: max(var(--pad), env(safe-area-inset-left)); padding-right: max(var(--pad), env(safe-area-inset-right)); }
 }
 
